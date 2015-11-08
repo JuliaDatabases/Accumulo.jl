@@ -1,4 +1,5 @@
 typealias SET Union{Set,Vector,Tuple}
 
-rowbytes(r) = convert(Vector{UInt8}, r)
+bytes(r) = convert(Vector{UInt8}, r)
 
+time_ms() = round(Int64, time() * 1000)

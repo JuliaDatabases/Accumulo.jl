@@ -14,7 +14,7 @@ export IteratorScope, Durability
 
 # export table administration commands
 # TODO: namespaces
-export clone_table, create_table, delete_table, rename_table, du, config, export_table, import_table, offline, online, tables
+export table_clone, table_create, table_delete, table_rename, table_du, table_config, table_export, table_import, table_offline, table_online, table_exists, tables
 
 # export table  control commands
 # TODO: locality groups

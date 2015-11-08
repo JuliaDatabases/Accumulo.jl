@@ -34,7 +34,7 @@ conditional_batch() = BatchUpdates{ConditionalUpdate}()
 
 function mutate{T<:ColumnUpdate}(upd::BatchUpdates{T}, row, action::ColumnUpdate)
     rowbytes = bytes(row)
-    if rowbytes in upd.mutations
+    if rowbytes in keys(upd.mutations)
         mut = upd.mutations[rowbytes]
     else
         mut = upd.mutations[rowbytes] = ColumnUpdate[]
@@ -45,7 +45,7 @@ end
 
 function mutate{T<:ConditionalUpdates}(upd::BatchUpdates{T}, row, action::ColumnUpdate)
     rowbytes = bytes(row)
-    if rowbytes in upd.mutations
+    if rowbytes in keys(upd.mutations)
         cu = upd.mutations[rowbytes]
     else
         cu = upd.mutations[rowbytes] = ConditionalUpdates()
@@ -61,7 +61,7 @@ end
 
 function mutate{T<:ConditionalUpdates}(upd::BatchUpdates{T}, row, condition::Accumulo.proxy.Condition)
     rowbytes = bytes(row)
-    if rowbytes in upd.mutations
+    if rowbytes in keys(upd.mutations)
         cu = upd.mutations[rowbytes]
     else
         cu = upd.mutations[rowbytes] = ConditionalUpdates()

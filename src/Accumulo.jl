@@ -40,6 +40,7 @@ end
 
 include("proxy/proxy.jl")
 using .proxy
+import .proxy: update
 include("types.jl")
 include("sess.jl")
 include("table_admin.jl")

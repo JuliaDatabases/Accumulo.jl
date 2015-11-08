@@ -1195,10 +1195,6 @@ type update_args
   update_args() = (o=new(); fillunset(o); o)
 end # type update_args
 
-type update_result
-end # type update_result
-meta(t::Type{update_result}) = meta(t, Symbol[], Int[], Dict{Symbol,Any}())
-
 # types encapsulating arguments and return values of method flush
 
 type flush_args
@@ -1399,7 +1395,7 @@ type AccumuloProxyProcessor <: TProcessor
     handle(p.tp, ThriftHandler("closeScanner", _closeScanner, closeScanner_args, closeScanner_result))
     handle(p.tp, ThriftHandler("updateAndFlush", _updateAndFlush, updateAndFlush_args, updateAndFlush_result))
     handle(p.tp, ThriftHandler("createWriter", _createWriter, createWriter_args, createWriter_result))
-    handle(p.tp, ThriftHandler("update", _update, update_args, update_result))
+    handle(p.tp, ThriftHandler("update", _update, update_args, Void))
     handle(p.tp, ThriftHandler("flush", _flush, flush_args, flush_result))
     handle(p.tp, ThriftHandler("closeWriter", _closeWriter, closeWriter_args, closeWriter_result))
     handle(p.tp, ThriftHandler("updateRowConditionally", _updateRowConditionally, updateRowConditionally_args, updateRowConditionally_result))
@@ -2160,7 +2156,7 @@ type AccumuloProxyProcessor <: TProcessor
       rethrow()
     end # try
   end #function _createWriter
-  _update(inp::update_args) = (update(); update_result())
+  _update(inp::update_args) = (update(); nothing)
   function _flush(inp::flush_args)
     try
       flush(inp.writer)
@@ -4202,7 +4198,7 @@ end # function createWriter
 function update(c::AccumuloProxyClientBase, writer::UTF8String, cells::Dict{Vector{UInt8},Vector{ColumnUpdate}})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
-  Thrift.writeMessageBegin(p, "update", Thrift.MessageType.CALL, c.seqid)
+  Thrift.writeMessageBegin(p, "update", Thrift.MessageType.ONEWAY, c.seqid)
   inp = update_args()
   Thrift.set_field!(inp, :writer, writer)
   Thrift.set_field!(inp, :cells, cells)
@@ -4210,11 +4206,6 @@ function update(c::AccumuloProxyClientBase, writer::UTF8String, cells::Dict{Vect
   Thrift.writeMessageEnd(p)
   Thrift.flush(p.t)
   
-  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
-  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
-  outp = Thrift.read(p, update_result())
-  Thrift.readMessageEnd(p)
-  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
   nothing
 end # function update
 

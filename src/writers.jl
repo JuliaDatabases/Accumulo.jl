@@ -17,22 +17,23 @@ function _col_update(col_family, col_qualifier, col_visibility, value, timestamp
         :value => bytes(value)))
 end
 
-typealias AbstractUpdate        Union{ColumnUpdate, ConditionalUpdates}
+typealias ColumnUpdates         Vector{ColumnUpdate}
+typealias AbstractUpdate        Union{ColumnUpdates, ConditionalUpdates}
 typealias AbstractWriterOptions Union{WriterOptions, ConditionalWriterOptions}
 
 ##
 # BatchUpdates collect mutations to be applied with a batch operation
 type BatchUpdates{T <: AbstractUpdate}
-    mutations::Dict{Vector{UInt8}, Vector{T}}
+    mutations::Dict{Vector{UInt8}, T}
     function BatchUpdates()
-        new(Dict{Vector{UInt8}, Vector{T}}())
+        new(Dict{Vector{UInt8}, T}())
     end
 end
 
-batch() = BatchUpdates{ColumnUpdate}()
-conditional_batch() = BatchUpdates{ConditionalUpdate}()
+batch() = BatchUpdates{ColumnUpdates}()
+conditional_batch() = BatchUpdates{ConditionalUpdates}()
 
-function mutate{T<:ColumnUpdate}(upd::BatchUpdates{T}, row, action::ColumnUpdate)
+function mutate{T<:ColumnUpdates}(upd::BatchUpdates{T}, row, action::ColumnUpdate)
     rowbytes = bytes(row)
     if rowbytes in keys(upd.mutations)
         mut = upd.mutations[rowbytes]
@@ -55,7 +56,7 @@ end
 
 function mutate(cu::ConditionalUpdates, condition::ColumnUpdate)
     isfilled(cu, :updates) || set_field!(cu, :updates, ColumnUpdate[])
-    push!(cu.updates, action)
+    push!(cu.updates, condition)
     cu
 end
 
@@ -159,11 +160,12 @@ close(writer::BatchWriter{WriterOptions}) = closeWriter(client(writer.session), 
 close(writer::BatchWriter{ConditionalWriterOptions}) = closeConditionalWriter(client(writer.session), writer.writername)
 
 flush(writer::BatchWriter{WriterOptions}) = flush(client(writer.session), writer.writername)
+flush(writer::BatchWriter{ConditionalWriterOptions}) = nothing  # there's no flush API for conditional writes. this function just exists for uniformity
 
-update(writer::BatchWriter{WriterOptions}, mutations::BatchUpdates{ColumnUpdate}) = update(client(writer.session), writer.writername, mutations.mutations)
+update(writer::BatchWriter{WriterOptions}, mutations::BatchUpdates{ColumnUpdates}) = update(client(writer.session), writer.writername, mutations.mutations)
 update(writer::BatchWriter{ConditionalWriterOptions}, mutations::BatchUpdates{ConditionalUpdates}) = updateRowsConditionally(client(writer.session), writer.writername, mutations.mutations)
 
-update(session::AccumuloSession, tablename::AbstractString, mutations::BatchUpdates{ColumnUpdate}) = updateAndFlush(client(session), handle(session), utf8(tablename), mutations.mutations)
+update(session::AccumuloSession, tablename::AbstractString, mutations::BatchUpdates{ColumnUpdates}) = updateAndFlush(client(session), handle(session), utf8(tablename), mutations.mutations)
 function update(session::AccumuloSession, tablename::AbstractString, upd::BatchUpdates{ConditionalUpdates})
     results = Dict{Vector{UInt8}, ConditionalStatus}()
     for (row, cu) in upd.mutations

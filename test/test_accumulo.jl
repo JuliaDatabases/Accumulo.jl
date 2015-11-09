@@ -15,6 +15,13 @@ end
 function print_table_iters(session, tbl)
     tbliters = iters(session, tbl)
     println("Iterators on $tbl: $tbliters")
+
+    for (iname, iscopes) in tbliters
+        for iscope in iscopes
+            iprops = iter(session, tbl, iname, iscope)
+            println("Iterator $iname on $tbl in scope $iscope: $iprops")
+        end
+    end
 end
 
 function print_info(session)
@@ -37,13 +44,6 @@ function print_info(session)
 
         tblconstr = constraints(session, tbl)
         println("Constraints on $tbl: $tblconstr")
-
-        for (iname, iscopes) in tbliters
-            for iscope in iscopes
-                iprops = iter(session, tbl, iname, iscope)
-                println("Iterator $iname on $tbl in scope $iscope: $iprops")
-            end
-        end
     end
 end
 
@@ -197,8 +197,8 @@ function test_table_readwrite(session)
 end
 
 session = AccumuloSession("127.0.1.1", 42424, AccumuloAuthSASLPlain("root", "root"))
-#print_info(session)
-#test_table_admin(session)
+print_info(session)
+test_table_admin(session)
 test_table_readwrite(session)
 close(session)
 

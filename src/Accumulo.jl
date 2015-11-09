@@ -21,13 +21,13 @@ export table_clone, table_create, table_delete, table_rename, table_du, table_co
 
 # export table  control commands
 # TODO: locality groups
-export flush, constraints, add_constraints, remove_constraints, splits, split, merge
+export flush, constraints, add_constraints, remove_constraints, table_splits, table_split, table_merge
 
 # export table iterators
 export iter, iters, add_iter, remove_iter, check_iter
 
 # export writer functions
-export batch, conditional_batch, batch_writer, conditional_batch_writer,  where, update, delete, close, flush
+export batch, conditional_batch, batch_writer, conditional_batch_writer, where, update, delete, close, flush
 
 # export scanner functions
 export scanner, scanner_key, records, close, eof, start, next, done

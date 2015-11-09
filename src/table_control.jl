@@ -1,10 +1,10 @@
 # add, merge or list split points to an existing table
-function split(session::AccumuloSession, tablename::AbstractString, splits...)
+function table_split(session::AccumuloSession, tablename::AbstractString, splits...)
     splitset = Set([bytes(s) for s in splits])
     addSplits(client(session), handle(session), utf8(tablename), splitset)
 end
-merge(session::AccumuloSession, tablename::AbstractString, start_split, end_split) = mergeTablets(client(session), handle(session), utf8(tablename), bytes(start_split), bytes(end_split))
-splits(session::AccumuloSession, tablename::AbstractString, max_splits::Integer=1024) = listSplits(client(session), handle(session), utf8(tablename), Int32(max_splits))
+table_merge(session::AccumuloSession, tablename::AbstractString, start_split, end_split) = mergeTablets(client(session), handle(session), utf8(tablename), bytes(start_split), bytes(end_split))
+table_splits(session::AccumuloSession, tablename::AbstractString, max_splits::Integer=1024) = listSplits(client(session), handle(session), utf8(tablename), Int32(max_splits))
 
 # Initiates a major compaction on tablets within the specified range that have one or more files.  If no file selection options are specified, then all files will be compacted.  Options that configure output
 # settings are only applied to this compaction and not later compactions.  If multiple concurrent user initiated compactions specify iterators or a compaction strategy, then all but one will fail to start.

@@ -9,12 +9,15 @@ export AccumuloSession, AccumuloAuth, AccumuloAuthSASLPlain
 export close
 
 # export useful enums
-#export PartialKey, TablePermission, SystemPermission, ScanType, ScanState, ConditionalStatus, CompactionType, CompactionReason, TimeType
-export IteratorScope, Durability
+#export PartialKey, TablePermission, SystemPermission, ScanType, ScanState, CompactionType, CompactionReason, TimeType
+export IteratorScope, Durability, ConditionalStatus
+
+# export useful types
+export Key, KeyValue, IteratorSetting
 
 # export table administration commands
 # TODO: namespaces
-export table_clone, table_create, table_delete, table_rename, table_du, table_config, table_export, table_import, table_offline, table_online, table_exists, tables
+export table_clone, table_create, table_delete, table_rename, table_du, table_config, table_config!, table_versions!, table_export, table_import, table_offline, table_online, table_exists, tables
 
 # export table  control commands
 # TODO: locality groups
@@ -25,6 +28,9 @@ export iter, iters, add_iter, remove_iter, check_iter
 
 # export writer functions
 export batch, conditional_batch, batch_writer, conditional_batch_writer,  where, update, delete, close, flush
+
+# export scanner functions
+export scanner, scanner_key, records, close, eof, start, next, done
 
 # enable logging only during debugging
 using Logging
@@ -47,5 +53,6 @@ include("table_admin.jl")
 include("table_control.jl")
 include("iter.jl")
 include("writers.jl")
+include("scanners.jl")
 
 end # module

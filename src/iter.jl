@@ -8,7 +8,7 @@ iter(session::AccumuloSession, tablename::AbstractString, itername::AbstractStri
 function iter(name::AbstractString, class::AbstractString, priority::Integer, properties::Dict=Dict())
     iter_properties = Dict{UTF8String,UTF8String}([utf8(string(n))=>utf8(string(v)) for (n,v) in properties]...)
 
-    thriftbuild(IteratorSetting, Dict(:priority => Int32(priotity),
+    thriftbuild(IteratorSetting, Dict(:priority => Int32(priority),
         :name => utf8(name),
         :iteratorClass => utf8(class),
         :properties => iter_properties))

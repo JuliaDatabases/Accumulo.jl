@@ -33,8 +33,16 @@ end
 
 table_exists(session::AccumuloSession, table::AbstractString) = tableExists(client(session), handle(session), utf8(table))
 
-# prints table specific properties
+# get or set table specific properties
 table_config(session::AccumuloSession, tablename::AbstractString) = getTableProperties(client(session), handle(session), utf8(tablename))
+table_config!(session::AccumuloSession, tablename::AbstractString, property::AbstractString, value::AbstractString) = setTableProperty(client(session), handle(session), utf8(tablename), utf8(property), utf8(value))
+
+# limit versions in a table
+function table_versions!(session::AccumuloSession, tablename::AbstractString, nversions::Integer)
+    (nversions > 0) || error("at least 1 version required")
+    viter = iter("vers", "org.apache.accumulo.core.iterators.user.VersioningIterator", 10, Dict("maxVersions"=>nversions))
+    add_iter(session, tablename, viter, (IteratorScope.MINC, IteratorScope.MAJC, IteratorScope.SCAN))
+end
 
 # import/export tables
 #
@@ -50,7 +58,7 @@ table_import(session::AccumuloSession, tablename::AbstractString, import_dir::Ab
 table_offline(session::AccumuloSession, tablename::AbstractString; wait::Bool=true) = offlineTable(client(session), handle(session), utf8(tablename), wait)
 table_online(session::AccumuloSession, tablename::AbstractString; wait::Bool=true) = onlineTable(client(session), handle(session), utf8(tablename), wait)
 
-# displays a list of all existing tables
+# get a list of all existing tables
 tables(session::AccumuloSession) = listTables(client(session), handle(session))
 
 #=

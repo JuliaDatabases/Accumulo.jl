@@ -8,8 +8,8 @@ table_splits(session::AccumuloSession, tablename::AbstractString, max_splits::In
 
 # Initiates a major compaction on tablets within the specified range that have one or more files.  If no file selection options are specified, then all files will be compacted.  Options that configure output
 # settings are only applied to this compaction and not later compactions.  If multiple concurrent user initiated compactions specify iterators or a compaction strategy, then all but one will fail to start.
-function compact()
-end
+#function compact()
+#end
 
 # adds, deletes, or lists constraints for a table
 constraints(session::AccumuloSession, tablename::AbstractString) = listConstraints(client(session), handle(session), utf8(tablename))

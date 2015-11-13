@@ -19,8 +19,8 @@ export Key, KeyValue, IteratorSetting
 # TODO: namespaces
 export table_clone, table_create, table_delete, table_rename, table_du, table_config, table_config!, table_versions!, table_export, table_import, table_offline, table_online, table_exists, tables
 
-# export table  control commands
-# TODO: locality groups
+# export table control commands
+# TODO: locality groups, compaction
 export flush, constraints, add_constraints, remove_constraints, table_splits, table_split, table_merge
 
 # export table iterators

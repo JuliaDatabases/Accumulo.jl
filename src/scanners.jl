@@ -63,7 +63,7 @@ function as_col(colspec)
     col = ScanColumn()
     if isa(colspec, Tuple)
         set_field!(col, :colFamily, bytes(colspec[1]))
-        (length(colspec) > 1) && set_field!(col, :colFamily, bytes(colspec[2]))
+        (length(colspec) > 1) && set_field!(col, :colQualifier, bytes(colspec[2]))
     else
         set_field!(col, :colFamily, bytes(colspec))
     end
@@ -92,7 +92,7 @@ function scanner_opts(;rng::Union{Expr,SET} = :(),
     opts
 end
 
-function scanner(session::AccumuloSession, tablename::AbstractString; 
+function scanner(session::AccumuloSession, tablename::AbstractString;
                 rng::Union{Expr,SET} = :(),
                 columns::Vector{Tuple} = Tuple[],
                 iterators::Vector{IteratorSetting} = IteratorSetting[],

@@ -32,17 +32,17 @@ export batch, conditional_batch, batch_writer, conditional_batch_writer, where, 
 # export scanner functions
 export scanner, scanner_key, records, close, eof, start, next, done
 
-# enable logging only during debugging
-using Logging
-const logger = Logging.configure(level=DEBUG)
-#const logger = Logging.configure(filename="/tmp/accumulo$(getpid()).log", level=DEBUG)
-macro logmsg(s)
-    quote
-        debug($(esc(s)))
-    end
-end
+## enable logging only during debugging
+#using Logging
+#const logger = Logging.configure(level=DEBUG)
+##const logger = Logging.configure(filename="/tmp/accumulo$(getpid()).log", level=DEBUG)
 #macro logmsg(s)
+#    quote
+#        debug($(esc(s)))
+#    end
 #end
+macro logmsg(s)
+end
 
 include("proxy/proxy.jl")
 using .proxy

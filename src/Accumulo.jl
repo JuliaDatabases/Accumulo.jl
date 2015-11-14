@@ -19,8 +19,8 @@ export Key, KeyValue, IteratorSetting
 # TODO: namespaces
 export table_clone, table_create, table_delete, table_rename, table_du, table_config, table_config!, table_versions!, table_export, table_import, table_offline, table_online, table_exists, tables
 
-# export table  control commands
-# TODO: locality groups
+# export table control commands
+# TODO: locality groups, compaction
 export flush, constraints, add_constraints, remove_constraints, table_splits, table_split, table_merge
 
 # export table iterators
@@ -32,17 +32,17 @@ export batch, conditional_batch, batch_writer, conditional_batch_writer, where, 
 # export scanner functions
 export scanner, scanner_key, records, close, eof, start, next, done
 
-# enable logging only during debugging
-using Logging
-const logger = Logging.configure(level=DEBUG)
-#const logger = Logging.configure(filename="/tmp/accumulo$(getpid()).log", level=DEBUG)
-macro logmsg(s)
-    quote
-        debug($(esc(s)))
-    end
-end
+## enable logging only during debugging
+#using Logging
+#const logger = Logging.configure(level=DEBUG)
+##const logger = Logging.configure(filename="/tmp/accumulo$(getpid()).log", level=DEBUG)
 #macro logmsg(s)
+#    quote
+#        debug($(esc(s)))
+#    end
 #end
+macro logmsg(s)
+end
 
 include("proxy/proxy.jl")
 using .proxy

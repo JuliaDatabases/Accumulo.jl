@@ -4,7 +4,7 @@
 
 Accumulo.jl is a client library for Apache Accumulo, built using the Accumulo Thrift Proxy API.
 
-[![Build Status](https://travis-ci.org/tanmaykm/Accumulo.jl.svg?branch=master)](https://travis-ci.org/tanmaykm/Accumulo.jl)
+[![Build Status](https://travis-ci.org/JuliaDB/Accumulo.jl.svg?branch=master)](https://travis-ci.org/JuliaDB/Accumulo.jl)
 
 ## Connecting
 
@@ -316,3 +316,4 @@ The range bounds (`k1` and `k2` above) can be one of the following:
     - locality groups
     - namespaces
 - additional authentication methods
+- nicer API

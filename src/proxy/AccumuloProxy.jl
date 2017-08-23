@@ -8,8 +8,8 @@
 # types encapsulating arguments and return values of method login
 
 type login_args
-  principal::UTF8String
-  loginProperties::Dict{UTF8String,UTF8String}
+  principal::String
+  loginProperties::Dict{String,String}
   login_args() = (o=new(); fillunset(o); o)
 end # type login_args
 
@@ -25,8 +25,8 @@ meta(t::Type{login_result}) = meta(t, Symbol[:success, :ouch2], Int[0, 1], Dict{
 
 type addConstraint_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  constraintClassName::UTF8String
+  tableName::String
+  constraintClassName::String
   addConstraint_args() = (o=new(); fillunset(o); o)
 end # type addConstraint_args
 
@@ -44,7 +44,7 @@ meta(t::Type{addConstraint_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :
 
 type addSplits_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   splits::Set{Vector{UInt8}}
   addSplits_args() = (o=new(); fillunset(o); o)
 end # type addSplits_args
@@ -61,7 +61,7 @@ meta(t::Type{addSplits_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1,
 
 type attachIterator_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   setting::IteratorSetting
   scopes::Set{Int32}
   attachIterator_args() = (o=new(); fillunset(o); o)
@@ -79,7 +79,7 @@ meta(t::Type{attachIterator_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], I
 
 type checkIteratorConflicts_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   setting::IteratorSetting
   scopes::Set{Int32}
   checkIteratorConflicts_args() = (o=new(); fillunset(o); o)
@@ -97,7 +97,7 @@ meta(t::Type{checkIteratorConflicts_result}) = meta(t, Symbol[:ouch1, :ouch2, :o
 
 type clearLocatorCache_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   clearLocatorCache_args() = (o=new(); fillunset(o); o)
 end # type clearLocatorCache_args
 
@@ -111,11 +111,11 @@ meta(t::Type{clearLocatorCache_result}) = meta(t, Symbol[:ouch1], Int[1], Dict{S
 
 type cloneTable_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  newTableName::UTF8String
+  tableName::String
+  newTableName::String
   flush::Bool
-  propertiesToSet::Dict{UTF8String,UTF8String}
-  propertiesToExclude::Set{UTF8String}
+  propertiesToSet::Dict{String,String}
+  propertiesToExclude::Set{String}
   cloneTable_args() = (o=new(); fillunset(o); o)
 end # type cloneTable_args
 
@@ -132,7 +132,7 @@ meta(t::Type{cloneTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3, :ouch4
 
 type compactTable_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   startRow::Vector{UInt8}
   endRow::Vector{UInt8}
   iterators::Vector{IteratorSetting}
@@ -154,7 +154,7 @@ meta(t::Type{compactTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int
 
 type cancelCompaction_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   cancelCompaction_args() = (o=new(); fillunset(o); o)
 end # type cancelCompaction_args
 
@@ -170,7 +170,7 @@ meta(t::Type{cancelCompaction_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3],
 
 type createTable_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   versioningIter::Bool
   _type::Int32
   createTable_args() = (o=new(); fillunset(o); o)
@@ -188,7 +188,7 @@ meta(t::Type{createTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[
 
 type deleteTable_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   deleteTable_args() = (o=new(); fillunset(o); o)
 end # type deleteTable_args
 
@@ -204,7 +204,7 @@ meta(t::Type{deleteTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[
 
 type deleteRows_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   startRow::Vector{UInt8}
   endRow::Vector{UInt8}
   deleteRows_args() = (o=new(); fillunset(o); o)
@@ -222,8 +222,8 @@ meta(t::Type{deleteRows_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1
 
 type exportTable_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  exportDir::UTF8String
+  tableName::String
+  exportDir::String
   exportTable_args() = (o=new(); fillunset(o); o)
 end # type exportTable_args
 
@@ -239,7 +239,7 @@ meta(t::Type{exportTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[
 
 type flushTable_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   startRow::Vector{UInt8}
   endRow::Vector{UInt8}
   wait::Bool
@@ -258,7 +258,7 @@ meta(t::Type{flushTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1
 
 type getDiskUsage_args
   login::Vector{UInt8}
-  tables::Set{UTF8String}
+  tables::Set{String}
   getDiskUsage_args() = (o=new(); fillunset(o); o)
 end # type getDiskUsage_args
 
@@ -276,12 +276,12 @@ meta(t::Type{getDiskUsage_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :o
 
 type getLocalityGroups_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   getLocalityGroups_args() = (o=new(); fillunset(o); o)
 end # type getLocalityGroups_args
 
 type getLocalityGroups_result
-  success::Dict{UTF8String,Set{UTF8String}}
+  success::Dict{String,Set{String}}
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   ouch3::TableNotFoundException
@@ -294,8 +294,8 @@ meta(t::Type{getLocalityGroups_result}) = meta(t, Symbol[:success, :ouch1, :ouch
 
 type getIteratorSetting_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  iteratorName::UTF8String
+  tableName::String
+  iteratorName::String
   scope::Int32
   getIteratorSetting_args() = (o=new(); fillunset(o); o)
 end # type getIteratorSetting_args
@@ -314,7 +314,7 @@ meta(t::Type{getIteratorSetting_result}) = meta(t, Symbol[:success, :ouch1, :ouc
 
 type getMaxRow_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   auths::Set{Vector{UInt8}}
   startRow::Vector{UInt8}
   startInclusive::Bool
@@ -337,12 +337,12 @@ meta(t::Type{getMaxRow_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :ouch
 
 type getTableProperties_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   getTableProperties_args() = (o=new(); fillunset(o); o)
 end # type getTableProperties_args
 
 type getTableProperties_result
-  success::Dict{UTF8String,UTF8String}
+  success::Dict{String,String}
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   ouch3::TableNotFoundException
@@ -355,9 +355,9 @@ meta(t::Type{getTableProperties_result}) = meta(t, Symbol[:success, :ouch1, :ouc
 
 type importDirectory_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  importDir::UTF8String
-  failureDir::UTF8String
+  tableName::String
+  importDir::String
+  failureDir::String
   setTime::Bool
   importDirectory_args() = (o=new(); fillunset(o); o)
 end # type importDirectory_args
@@ -374,8 +374,8 @@ meta(t::Type{importDirectory_result}) = meta(t, Symbol[:ouch1, :ouch3, :ouch4], 
 
 type importTable_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  importDir::UTF8String
+  tableName::String
+  importDir::String
   importTable_args() = (o=new(); fillunset(o); o)
 end # type importTable_args
 
@@ -391,7 +391,7 @@ meta(t::Type{importTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[
 
 type listSplits_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   maxSplits::Int32
   listSplits_args() = (o=new(); fillunset(o); o)
 end # type listSplits_args
@@ -414,7 +414,7 @@ type listTables_args
 end # type listTables_args
 
 type listTables_result
-  success::Set{UTF8String}
+  success::Set{String}
   listTables_result() = (o=new(); fillunset(o); o)
   listTables_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
 end # type listTables_result
@@ -424,12 +424,12 @@ meta(t::Type{listTables_result}) = meta(t, Symbol[:success], Int[0], Dict{Symbol
 
 type listIterators_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   listIterators_args() = (o=new(); fillunset(o); o)
 end # type listIterators_args
 
 type listIterators_result
-  success::Dict{UTF8String,Set{Int32}}
+  success::Dict{String,Set{Int32}}
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   ouch3::TableNotFoundException
@@ -442,12 +442,12 @@ meta(t::Type{listIterators_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :
 
 type listConstraints_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   listConstraints_args() = (o=new(); fillunset(o); o)
 end # type listConstraints_args
 
 type listConstraints_result
-  success::Dict{UTF8String,Int32}
+  success::Dict{String,Int32}
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   ouch3::TableNotFoundException
@@ -460,7 +460,7 @@ meta(t::Type{listConstraints_result}) = meta(t, Symbol[:success, :ouch1, :ouch2,
 
 type mergeTablets_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   startRow::Vector{UInt8}
   endRow::Vector{UInt8}
   mergeTablets_args() = (o=new(); fillunset(o); o)
@@ -478,7 +478,7 @@ meta(t::Type{mergeTablets_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int
 
 type offlineTable_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   wait::Bool
   offlineTable_args() = (o=new(); fillunset(o); o)
 end # type offlineTable_args
@@ -496,7 +496,7 @@ meta(t::Type{offlineTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int
 
 type onlineTable_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   wait::Bool
   onlineTable_args() = (o=new(); fillunset(o); o)
 end # type onlineTable_args
@@ -514,7 +514,7 @@ meta(t::Type{onlineTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[
 
 type removeConstraint_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   constraint::Int32
   removeConstraint_args() = (o=new(); fillunset(o); o)
 end # type removeConstraint_args
@@ -531,8 +531,8 @@ meta(t::Type{removeConstraint_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3],
 
 type removeIterator_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  iterName::UTF8String
+  tableName::String
+  iterName::String
   scopes::Set{Int32}
   removeIterator_args() = (o=new(); fillunset(o); o)
 end # type removeIterator_args
@@ -549,8 +549,8 @@ meta(t::Type{removeIterator_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], I
 
 type removeTableProperty_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  property::UTF8String
+  tableName::String
+  property::String
   removeTableProperty_args() = (o=new(); fillunset(o); o)
 end # type removeTableProperty_args
 
@@ -566,8 +566,8 @@ meta(t::Type{removeTableProperty_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch
 
 type renameTable_args
   login::Vector{UInt8}
-  oldTableName::UTF8String
-  newTableName::UTF8String
+  oldTableName::String
+  newTableName::String
   renameTable_args() = (o=new(); fillunset(o); o)
 end # type renameTable_args
 
@@ -584,8 +584,8 @@ meta(t::Type{renameTable_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3, :ouch
 
 type setLocalityGroups_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  groups::Dict{UTF8String,Set{UTF8String}}
+  tableName::String
+  groups::Dict{String,Set{String}}
   setLocalityGroups_args() = (o=new(); fillunset(o); o)
 end # type setLocalityGroups_args
 
@@ -601,9 +601,9 @@ meta(t::Type{setLocalityGroups_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3]
 
 type setTableProperty_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  property::UTF8String
-  value::UTF8String
+  tableName::String
+  property::String
+  value::String
   setTableProperty_args() = (o=new(); fillunset(o); o)
 end # type setTableProperty_args
 
@@ -619,7 +619,7 @@ meta(t::Type{setTableProperty_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3],
 
 type splitRangeByTablets_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   range::Range
   maxSplits::Int32
   splitRangeByTablets_args() = (o=new(); fillunset(o); o)
@@ -639,7 +639,7 @@ meta(t::Type{splitRangeByTablets_result}) = meta(t, Symbol[:success, :ouch1, :ou
 
 type tableExists_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   tableExists_args() = (o=new(); fillunset(o); o)
 end # type tableExists_args
 
@@ -658,7 +658,7 @@ type tableIdMap_args
 end # type tableIdMap_args
 
 type tableIdMap_result
-  success::Dict{UTF8String,UTF8String}
+  success::Dict{String,String}
   tableIdMap_result() = (o=new(); fillunset(o); o)
   tableIdMap_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
 end # type tableIdMap_result
@@ -668,9 +668,9 @@ meta(t::Type{tableIdMap_result}) = meta(t, Symbol[:success], Int[0], Dict{Symbol
 
 type testTableClassLoad_args
   login::Vector{UInt8}
-  tableName::UTF8String
-  className::UTF8String
-  asTypeName::UTF8String
+  tableName::String
+  className::String
+  asTypeName::String
   testTableClassLoad_args() = (o=new(); fillunset(o); o)
 end # type testTableClassLoad_args
 
@@ -688,7 +688,7 @@ meta(t::Type{testTableClassLoad_result}) = meta(t, Symbol[:success, :ouch1, :ouc
 
 type pingTabletServer_args
   login::Vector{UInt8}
-  tserver::UTF8String
+  tserver::String
   pingTabletServer_args() = (o=new(); fillunset(o); o)
 end # type pingTabletServer_args
 
@@ -703,7 +703,7 @@ meta(t::Type{pingTabletServer_result}) = meta(t, Symbol[:ouch1, :ouch2], Int[1, 
 
 type getActiveScans_args
   login::Vector{UInt8}
-  tserver::UTF8String
+  tserver::String
   getActiveScans_args() = (o=new(); fillunset(o); o)
 end # type getActiveScans_args
 
@@ -720,7 +720,7 @@ meta(t::Type{getActiveScans_result}) = meta(t, Symbol[:success, :ouch1, :ouch2],
 
 type getActiveCompactions_args
   login::Vector{UInt8}
-  tserver::UTF8String
+  tserver::String
   getActiveCompactions_args() = (o=new(); fillunset(o); o)
 end # type getActiveCompactions_args
 
@@ -741,7 +741,7 @@ type getSiteConfiguration_args
 end # type getSiteConfiguration_args
 
 type getSiteConfiguration_result
-  success::Dict{UTF8String,UTF8String}
+  success::Dict{String,String}
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   getSiteConfiguration_result() = (o=new(); fillunset(o); o)
@@ -757,7 +757,7 @@ type getSystemConfiguration_args
 end # type getSystemConfiguration_args
 
 type getSystemConfiguration_result
-  success::Dict{UTF8String,UTF8String}
+  success::Dict{String,String}
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   getSystemConfiguration_result() = (o=new(); fillunset(o); o)
@@ -773,7 +773,7 @@ type getTabletServers_args
 end # type getTabletServers_args
 
 type getTabletServers_result
-  success::Vector{UTF8String}
+  success::Vector{String}
   getTabletServers_result() = (o=new(); fillunset(o); o)
   getTabletServers_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
 end # type getTabletServers_result
@@ -783,7 +783,7 @@ meta(t::Type{getTabletServers_result}) = meta(t, Symbol[:success], Int[0], Dict{
 
 type removeProperty_args
   login::Vector{UInt8}
-  property::UTF8String
+  property::String
   removeProperty_args() = (o=new(); fillunset(o); o)
 end # type removeProperty_args
 
@@ -798,8 +798,8 @@ meta(t::Type{removeProperty_result}) = meta(t, Symbol[:ouch1, :ouch2], Int[1, 2]
 
 type setProperty_args
   login::Vector{UInt8}
-  property::UTF8String
-  value::UTF8String
+  property::String
+  value::String
   setProperty_args() = (o=new(); fillunset(o); o)
 end # type setProperty_args
 
@@ -814,8 +814,8 @@ meta(t::Type{setProperty_result}) = meta(t, Symbol[:ouch1, :ouch2], Int[1, 2], D
 
 type testClassLoad_args
   login::Vector{UInt8}
-  className::UTF8String
-  asTypeName::UTF8String
+  className::String
+  asTypeName::String
   testClassLoad_args() = (o=new(); fillunset(o); o)
 end # type testClassLoad_args
 
@@ -832,8 +832,8 @@ meta(t::Type{testClassLoad_result}) = meta(t, Symbol[:success, :ouch1, :ouch2], 
 
 type authenticateUser_args
   login::Vector{UInt8}
-  user::UTF8String
-  properties::Dict{UTF8String,UTF8String}
+  user::String
+  properties::Dict{String,String}
   authenticateUser_args() = (o=new(); fillunset(o); o)
 end # type authenticateUser_args
 
@@ -850,7 +850,7 @@ meta(t::Type{authenticateUser_result}) = meta(t, Symbol[:success, :ouch1, :ouch2
 
 type changeUserAuthorizations_args
   login::Vector{UInt8}
-  user::UTF8String
+  user::String
   authorizations::Set{Vector{UInt8}}
   changeUserAuthorizations_args() = (o=new(); fillunset(o); o)
 end # type changeUserAuthorizations_args
@@ -866,7 +866,7 @@ meta(t::Type{changeUserAuthorizations_result}) = meta(t, Symbol[:ouch1, :ouch2],
 
 type changeLocalUserPassword_args
   login::Vector{UInt8}
-  user::UTF8String
+  user::String
   password::Vector{UInt8}
   changeLocalUserPassword_args() = (o=new(); fillunset(o); o)
 end # type changeLocalUserPassword_args
@@ -882,7 +882,7 @@ meta(t::Type{changeLocalUserPassword_result}) = meta(t, Symbol[:ouch1, :ouch2], 
 
 type createLocalUser_args
   login::Vector{UInt8}
-  user::UTF8String
+  user::String
   password::Vector{UInt8}
   createLocalUser_args() = (o=new(); fillunset(o); o)
 end # type createLocalUser_args
@@ -898,7 +898,7 @@ meta(t::Type{createLocalUser_result}) = meta(t, Symbol[:ouch1, :ouch2], Int[1, 2
 
 type dropLocalUser_args
   login::Vector{UInt8}
-  user::UTF8String
+  user::String
   dropLocalUser_args() = (o=new(); fillunset(o); o)
 end # type dropLocalUser_args
 
@@ -913,7 +913,7 @@ meta(t::Type{dropLocalUser_result}) = meta(t, Symbol[:ouch1, :ouch2], Int[1, 2],
 
 type getUserAuthorizations_args
   login::Vector{UInt8}
-  user::UTF8String
+  user::String
   getUserAuthorizations_args() = (o=new(); fillunset(o); o)
 end # type getUserAuthorizations_args
 
@@ -930,7 +930,7 @@ meta(t::Type{getUserAuthorizations_result}) = meta(t, Symbol[:success, :ouch1, :
 
 type grantSystemPermission_args
   login::Vector{UInt8}
-  user::UTF8String
+  user::String
   perm::Int32
   grantSystemPermission_args() = (o=new(); fillunset(o); o)
 end # type grantSystemPermission_args
@@ -946,8 +946,8 @@ meta(t::Type{grantSystemPermission_result}) = meta(t, Symbol[:ouch1, :ouch2], In
 
 type grantTablePermission_args
   login::Vector{UInt8}
-  user::UTF8String
-  table::UTF8String
+  user::String
+  table::String
   perm::Int32
   grantTablePermission_args() = (o=new(); fillunset(o); o)
 end # type grantTablePermission_args
@@ -964,7 +964,7 @@ meta(t::Type{grantTablePermission_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouc
 
 type hasSystemPermission_args
   login::Vector{UInt8}
-  user::UTF8String
+  user::String
   perm::Int32
   hasSystemPermission_args() = (o=new(); fillunset(o); o)
 end # type hasSystemPermission_args
@@ -982,8 +982,8 @@ meta(t::Type{hasSystemPermission_result}) = meta(t, Symbol[:success, :ouch1, :ou
 
 type hasTablePermission_args
   login::Vector{UInt8}
-  user::UTF8String
-  table::UTF8String
+  user::String
+  table::String
   perm::Int32
   hasTablePermission_args() = (o=new(); fillunset(o); o)
 end # type hasTablePermission_args
@@ -1006,7 +1006,7 @@ type listLocalUsers_args
 end # type listLocalUsers_args
 
 type listLocalUsers_result
-  success::Set{UTF8String}
+  success::Set{String}
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   ouch3::TableNotFoundException
@@ -1019,7 +1019,7 @@ meta(t::Type{listLocalUsers_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, 
 
 type revokeSystemPermission_args
   login::Vector{UInt8}
-  user::UTF8String
+  user::String
   perm::Int32
   revokeSystemPermission_args() = (o=new(); fillunset(o); o)
 end # type revokeSystemPermission_args
@@ -1035,8 +1035,8 @@ meta(t::Type{revokeSystemPermission_result}) = meta(t, Symbol[:ouch1, :ouch2], I
 
 type revokeTablePermission_args
   login::Vector{UInt8}
-  user::UTF8String
-  table::UTF8String
+  user::String
+  table::String
   perm::Int32
   revokeTablePermission_args() = (o=new(); fillunset(o); o)
 end # type revokeTablePermission_args
@@ -1053,13 +1053,13 @@ meta(t::Type{revokeTablePermission_result}) = meta(t, Symbol[:ouch1, :ouch2, :ou
 
 type createBatchScanner_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   options::BatchScanOptions
   createBatchScanner_args() = (o=new(); fillunset(o); o)
 end # type createBatchScanner_args
 
 type createBatchScanner_result
-  success::UTF8String
+  success::String
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   ouch3::TableNotFoundException
@@ -1072,13 +1072,13 @@ meta(t::Type{createBatchScanner_result}) = meta(t, Symbol[:success, :ouch1, :ouc
 
 type createScanner_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   options::ScanOptions
   createScanner_args() = (o=new(); fillunset(o); o)
 end # type createScanner_args
 
 type createScanner_result
-  success::UTF8String
+  success::String
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   ouch3::TableNotFoundException
@@ -1090,7 +1090,7 @@ meta(t::Type{createScanner_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :
 # types encapsulating arguments and return values of method hasNext
 
 type hasNext_args
-  scanner::UTF8String
+  scanner::String
   hasNext_args() = (o=new(); fillunset(o); o)
 end # type hasNext_args
 
@@ -1105,7 +1105,7 @@ meta(t::Type{hasNext_result}) = meta(t, Symbol[:success, :ouch1], Int[0, 1], Dic
 # types encapsulating arguments and return values of method nextEntry
 
 type nextEntry_args
-  scanner::UTF8String
+  scanner::String
   nextEntry_args() = (o=new(); fillunset(o); o)
 end # type nextEntry_args
 
@@ -1122,7 +1122,7 @@ meta(t::Type{nextEntry_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :ouch
 # types encapsulating arguments and return values of method nextK
 
 type nextK_args
-  scanner::UTF8String
+  scanner::String
   k::Int32
   nextK_args() = (o=new(); fillunset(o); o)
 end # type nextK_args
@@ -1140,7 +1140,7 @@ meta(t::Type{nextK_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :ouch3], 
 # types encapsulating arguments and return values of method closeScanner
 
 type closeScanner_args
-  scanner::UTF8String
+  scanner::String
   closeScanner_args() = (o=new(); fillunset(o); o)
 end # type closeScanner_args
 
@@ -1154,7 +1154,7 @@ meta(t::Type{closeScanner_result}) = meta(t, Symbol[:ouch1], Int[1], Dict{Symbol
 
 type updateAndFlush_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   cells::Dict{Vector{UInt8},Vector{ColumnUpdate}}
   updateAndFlush_args() = (o=new(); fillunset(o); o)
 end # type updateAndFlush_args
@@ -1172,13 +1172,13 @@ meta(t::Type{updateAndFlush_result}) = meta(t, Symbol[:outch1, :ouch2, :ouch3, :
 
 type createWriter_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   opts::WriterOptions
   createWriter_args() = (o=new(); fillunset(o); o)
 end # type createWriter_args
 
 type createWriter_result
-  success::UTF8String
+  success::String
   outch1::AccumuloException
   ouch2::AccumuloSecurityException
   ouch3::TableNotFoundException
@@ -1190,7 +1190,7 @@ meta(t::Type{createWriter_result}) = meta(t, Symbol[:success, :outch1, :ouch2, :
 # types encapsulating arguments and return values of method update
 
 type update_args
-  writer::UTF8String
+  writer::String
   cells::Dict{Vector{UInt8},Vector{ColumnUpdate}}
   update_args() = (o=new(); fillunset(o); o)
 end # type update_args
@@ -1198,7 +1198,7 @@ end # type update_args
 # types encapsulating arguments and return values of method flush
 
 type flush_args
-  writer::UTF8String
+  writer::String
   flush_args() = (o=new(); fillunset(o); o)
 end # type flush_args
 
@@ -1212,7 +1212,7 @@ meta(t::Type{flush_result}) = meta(t, Symbol[:ouch1, :ouch2], Int[1, 2], Dict{Sy
 # types encapsulating arguments and return values of method closeWriter
 
 type closeWriter_args
-  writer::UTF8String
+  writer::String
   closeWriter_args() = (o=new(); fillunset(o); o)
 end # type closeWriter_args
 
@@ -1227,7 +1227,7 @@ meta(t::Type{closeWriter_result}) = meta(t, Symbol[:ouch1, :ouch2], Int[1, 2], D
 
 type updateRowConditionally_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   row::Vector{UInt8}
   updates::ConditionalUpdates
   updateRowConditionally_args() = (o=new(); fillunset(o); o)
@@ -1247,13 +1247,13 @@ meta(t::Type{updateRowConditionally_result}) = meta(t, Symbol[:success, :ouch1, 
 
 type createConditionalWriter_args
   login::Vector{UInt8}
-  tableName::UTF8String
+  tableName::String
   options::ConditionalWriterOptions
   createConditionalWriter_args() = (o=new(); fillunset(o); o)
 end # type createConditionalWriter_args
 
 type createConditionalWriter_result
-  success::UTF8String
+  success::String
   ouch1::AccumuloException
   ouch2::AccumuloSecurityException
   ouch3::TableNotFoundException
@@ -1265,7 +1265,7 @@ meta(t::Type{createConditionalWriter_result}) = meta(t, Symbol[:success, :ouch1,
 # types encapsulating arguments and return values of method updateRowsConditionally
 
 type updateRowsConditionally_args
-  conditionalWriter::UTF8String
+  conditionalWriter::String
   updates::Dict{Vector{UInt8},ConditionalUpdates}
   updateRowsConditionally_args() = (o=new(); fillunset(o); o)
 end # type updateRowsConditionally_args
@@ -1283,7 +1283,7 @@ meta(t::Type{updateRowsConditionally_result}) = meta(t, Symbol[:success, :ouch1,
 # types encapsulating arguments and return values of method closeConditionalWriter
 
 type closeConditionalWriter_args
-  conditionalWriter::UTF8String
+  conditionalWriter::String
   closeConditionalWriter_args() = (o=new(); fillunset(o); o)
 end # type closeConditionalWriter_args
 
@@ -2224,338 +2224,338 @@ distribute(p::AccumuloProxyProcessor) = distribute(p.tp)
 
 
 # Server side methods to be defined by user:
-# function login(principal::UTF8String, loginProperties::Dict{UTF8String,UTF8String})
+# function login(principal::String, loginProperties::Dict{String,String})
 #     # returns Vector{UInt8}
 #     # throws ouch2::AccumuloSecurityException
-# function addConstraint(login::Vector{UInt8}, tableName::UTF8String, constraintClassName::UTF8String)
+# function addConstraint(login::Vector{UInt8}, tableName::String, constraintClassName::String)
 #     # returns Int32
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function addSplits(login::Vector{UInt8}, tableName::UTF8String, splits::Set{Vector{UInt8}})
+# function addSplits(login::Vector{UInt8}, tableName::String, splits::Set{Vector{UInt8}})
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function attachIterator(login::Vector{UInt8}, tableName::UTF8String, setting::IteratorSetting, scopes::Set{Int32})
+# function attachIterator(login::Vector{UInt8}, tableName::String, setting::IteratorSetting, scopes::Set{Int32})
 #     # returns nothing
 #     # throws ouch1::AccumuloSecurityException
 #     # throws ouch2::AccumuloException
 #     # throws ouch3::TableNotFoundException
-# function checkIteratorConflicts(login::Vector{UInt8}, tableName::UTF8String, setting::IteratorSetting, scopes::Set{Int32})
+# function checkIteratorConflicts(login::Vector{UInt8}, tableName::String, setting::IteratorSetting, scopes::Set{Int32})
 #     # returns nothing
 #     # throws ouch1::AccumuloSecurityException
 #     # throws ouch2::AccumuloException
 #     # throws ouch3::TableNotFoundException
-# function clearLocatorCache(login::Vector{UInt8}, tableName::UTF8String)
+# function clearLocatorCache(login::Vector{UInt8}, tableName::String)
 #     # returns nothing
 #     # throws ouch1::TableNotFoundException
-# function cloneTable(login::Vector{UInt8}, tableName::UTF8String, newTableName::UTF8String, flush::Bool, propertiesToSet::Dict{UTF8String,UTF8String}, propertiesToExclude::Set{UTF8String})
+# function cloneTable(login::Vector{UInt8}, tableName::String, newTableName::String, flush::Bool, propertiesToSet::Dict{String,String}, propertiesToExclude::Set{String})
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
 #     # throws ouch4::TableExistsException
-# function compactTable(login::Vector{UInt8}, tableName::UTF8String, startRow::Vector{UInt8}, endRow::Vector{UInt8}, iterators::Vector{IteratorSetting}, flush::Bool, wait::Bool, compactionStrategy::CompactionStrategyConfig)
+# function compactTable(login::Vector{UInt8}, tableName::String, startRow::Vector{UInt8}, endRow::Vector{UInt8}, iterators::Vector{IteratorSetting}, flush::Bool, wait::Bool, compactionStrategy::CompactionStrategyConfig)
 #     # returns nothing
 #     # throws ouch1::AccumuloSecurityException
 #     # throws ouch2::TableNotFoundException
 #     # throws ouch3::AccumuloException
-# function cancelCompaction(login::Vector{UInt8}, tableName::UTF8String)
+# function cancelCompaction(login::Vector{UInt8}, tableName::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloSecurityException
 #     # throws ouch2::TableNotFoundException
 #     # throws ouch3::AccumuloException
-# function createTable(login::Vector{UInt8}, tableName::UTF8String, versioningIter::Bool, _type::Int32)
+# function createTable(login::Vector{UInt8}, tableName::String, versioningIter::Bool, _type::Int32)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableExistsException
-# function deleteTable(login::Vector{UInt8}, tableName::UTF8String)
+# function deleteTable(login::Vector{UInt8}, tableName::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function deleteRows(login::Vector{UInt8}, tableName::UTF8String, startRow::Vector{UInt8}, endRow::Vector{UInt8})
+# function deleteRows(login::Vector{UInt8}, tableName::String, startRow::Vector{UInt8}, endRow::Vector{UInt8})
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function exportTable(login::Vector{UInt8}, tableName::UTF8String, exportDir::UTF8String)
+# function exportTable(login::Vector{UInt8}, tableName::String, exportDir::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function flushTable(login::Vector{UInt8}, tableName::UTF8String, startRow::Vector{UInt8}, endRow::Vector{UInt8}, wait::Bool)
+# function flushTable(login::Vector{UInt8}, tableName::String, startRow::Vector{UInt8}, endRow::Vector{UInt8}, wait::Bool)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function getDiskUsage(login::Vector{UInt8}, tables::Set{UTF8String})
+# function getDiskUsage(login::Vector{UInt8}, tables::Set{String})
 #     # returns Vector{DiskUsage}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function getLocalityGroups(login::Vector{UInt8}, tableName::UTF8String)
-#     # returns Dict{UTF8String,Set{UTF8String}}
+# function getLocalityGroups(login::Vector{UInt8}, tableName::String)
+#     # returns Dict{String,Set{String}}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function getIteratorSetting(login::Vector{UInt8}, tableName::UTF8String, iteratorName::UTF8String, scope::Int32)
+# function getIteratorSetting(login::Vector{UInt8}, tableName::String, iteratorName::String, scope::Int32)
 #     # returns IteratorSetting
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function getMaxRow(login::Vector{UInt8}, tableName::UTF8String, auths::Set{Vector{UInt8}}, startRow::Vector{UInt8}, startInclusive::Bool, endRow::Vector{UInt8}, endInclusive::Bool)
+# function getMaxRow(login::Vector{UInt8}, tableName::String, auths::Set{Vector{UInt8}}, startRow::Vector{UInt8}, startInclusive::Bool, endRow::Vector{UInt8}, endInclusive::Bool)
 #     # returns Vector{UInt8}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function getTableProperties(login::Vector{UInt8}, tableName::UTF8String)
-#     # returns Dict{UTF8String,UTF8String}
+# function getTableProperties(login::Vector{UInt8}, tableName::String)
+#     # returns Dict{String,String}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function importDirectory(login::Vector{UInt8}, tableName::UTF8String, importDir::UTF8String, failureDir::UTF8String, setTime::Bool)
+# function importDirectory(login::Vector{UInt8}, tableName::String, importDir::String, failureDir::String, setTime::Bool)
 #     # returns nothing
 #     # throws ouch1::TableNotFoundException
 #     # throws ouch3::AccumuloException
 #     # throws ouch4::AccumuloSecurityException
-# function importTable(login::Vector{UInt8}, tableName::UTF8String, importDir::UTF8String)
+# function importTable(login::Vector{UInt8}, tableName::String, importDir::String)
 #     # returns nothing
 #     # throws ouch1::TableExistsException
 #     # throws ouch2::AccumuloException
 #     # throws ouch3::AccumuloSecurityException
-# function listSplits(login::Vector{UInt8}, tableName::UTF8String, maxSplits::Int32)
+# function listSplits(login::Vector{UInt8}, tableName::String, maxSplits::Int32)
 #     # returns Vector{Vector{UInt8}}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
 # function listTables(login::Vector{UInt8})
-#     # returns Set{UTF8String}
-# function listIterators(login::Vector{UInt8}, tableName::UTF8String)
-#     # returns Dict{UTF8String,Set{Int32}}
+#     # returns Set{String}
+# function listIterators(login::Vector{UInt8}, tableName::String)
+#     # returns Dict{String,Set{Int32}}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function listConstraints(login::Vector{UInt8}, tableName::UTF8String)
-#     # returns Dict{UTF8String,Int32}
+# function listConstraints(login::Vector{UInt8}, tableName::String)
+#     # returns Dict{String,Int32}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function mergeTablets(login::Vector{UInt8}, tableName::UTF8String, startRow::Vector{UInt8}, endRow::Vector{UInt8})
+# function mergeTablets(login::Vector{UInt8}, tableName::String, startRow::Vector{UInt8}, endRow::Vector{UInt8})
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function offlineTable(login::Vector{UInt8}, tableName::UTF8String, wait::Bool)
+# function offlineTable(login::Vector{UInt8}, tableName::String, wait::Bool)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function onlineTable(login::Vector{UInt8}, tableName::UTF8String, wait::Bool)
+# function onlineTable(login::Vector{UInt8}, tableName::String, wait::Bool)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function removeConstraint(login::Vector{UInt8}, tableName::UTF8String, constraint::Int32)
+# function removeConstraint(login::Vector{UInt8}, tableName::String, constraint::Int32)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function removeIterator(login::Vector{UInt8}, tableName::UTF8String, iterName::UTF8String, scopes::Set{Int32})
+# function removeIterator(login::Vector{UInt8}, tableName::String, iterName::String, scopes::Set{Int32})
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function removeTableProperty(login::Vector{UInt8}, tableName::UTF8String, property::UTF8String)
+# function removeTableProperty(login::Vector{UInt8}, tableName::String, property::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function renameTable(login::Vector{UInt8}, oldTableName::UTF8String, newTableName::UTF8String)
+# function renameTable(login::Vector{UInt8}, oldTableName::String, newTableName::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
 #     # throws ouch4::TableExistsException
-# function setLocalityGroups(login::Vector{UInt8}, tableName::UTF8String, groups::Dict{UTF8String,Set{UTF8String}})
+# function setLocalityGroups(login::Vector{UInt8}, tableName::String, groups::Dict{String,Set{String}})
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function setTableProperty(login::Vector{UInt8}, tableName::UTF8String, property::UTF8String, value::UTF8String)
+# function setTableProperty(login::Vector{UInt8}, tableName::String, property::String, value::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function splitRangeByTablets(login::Vector{UInt8}, tableName::UTF8String, range::Range, maxSplits::Int32)
+# function splitRangeByTablets(login::Vector{UInt8}, tableName::String, range::Range, maxSplits::Int32)
 #     # returns Set{Range}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function tableExists(login::Vector{UInt8}, tableName::UTF8String)
+# function tableExists(login::Vector{UInt8}, tableName::String)
 #     # returns Bool
 # function tableIdMap(login::Vector{UInt8})
-#     # returns Dict{UTF8String,UTF8String}
-# function testTableClassLoad(login::Vector{UInt8}, tableName::UTF8String, className::UTF8String, asTypeName::UTF8String)
+#     # returns Dict{String,String}
+# function testTableClassLoad(login::Vector{UInt8}, tableName::String, className::String, asTypeName::String)
 #     # returns Bool
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function pingTabletServer(login::Vector{UInt8}, tserver::UTF8String)
+# function pingTabletServer(login::Vector{UInt8}, tserver::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function getActiveScans(login::Vector{UInt8}, tserver::UTF8String)
+# function getActiveScans(login::Vector{UInt8}, tserver::String)
 #     # returns Vector{ActiveScan}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function getActiveCompactions(login::Vector{UInt8}, tserver::UTF8String)
+# function getActiveCompactions(login::Vector{UInt8}, tserver::String)
 #     # returns Vector{ActiveCompaction}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 # function getSiteConfiguration(login::Vector{UInt8})
-#     # returns Dict{UTF8String,UTF8String}
+#     # returns Dict{String,String}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 # function getSystemConfiguration(login::Vector{UInt8})
-#     # returns Dict{UTF8String,UTF8String}
+#     # returns Dict{String,String}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 # function getTabletServers(login::Vector{UInt8})
-#     # returns Vector{UTF8String}
-# function removeProperty(login::Vector{UInt8}, property::UTF8String)
+#     # returns Vector{String}
+# function removeProperty(login::Vector{UInt8}, property::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function setProperty(login::Vector{UInt8}, property::UTF8String, value::UTF8String)
+# function setProperty(login::Vector{UInt8}, property::String, value::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function testClassLoad(login::Vector{UInt8}, className::UTF8String, asTypeName::UTF8String)
+# function testClassLoad(login::Vector{UInt8}, className::String, asTypeName::String)
 #     # returns Bool
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function authenticateUser(login::Vector{UInt8}, user::UTF8String, properties::Dict{UTF8String,UTF8String})
+# function authenticateUser(login::Vector{UInt8}, user::String, properties::Dict{String,String})
 #     # returns Bool
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function changeUserAuthorizations(login::Vector{UInt8}, user::UTF8String, authorizations::Set{Vector{UInt8}})
+# function changeUserAuthorizations(login::Vector{UInt8}, user::String, authorizations::Set{Vector{UInt8}})
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function changeLocalUserPassword(login::Vector{UInt8}, user::UTF8String, password::Vector{UInt8})
+# function changeLocalUserPassword(login::Vector{UInt8}, user::String, password::Vector{UInt8})
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function createLocalUser(login::Vector{UInt8}, user::UTF8String, password::Vector{UInt8})
+# function createLocalUser(login::Vector{UInt8}, user::String, password::Vector{UInt8})
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function dropLocalUser(login::Vector{UInt8}, user::UTF8String)
+# function dropLocalUser(login::Vector{UInt8}, user::String)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function getUserAuthorizations(login::Vector{UInt8}, user::UTF8String)
+# function getUserAuthorizations(login::Vector{UInt8}, user::String)
 #     # returns Vector{Vector{UInt8}}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function grantSystemPermission(login::Vector{UInt8}, user::UTF8String, perm::Int32)
+# function grantSystemPermission(login::Vector{UInt8}, user::String, perm::Int32)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function grantTablePermission(login::Vector{UInt8}, user::UTF8String, table::UTF8String, perm::Int32)
+# function grantTablePermission(login::Vector{UInt8}, user::String, table::String, perm::Int32)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function hasSystemPermission(login::Vector{UInt8}, user::UTF8String, perm::Int32)
+# function hasSystemPermission(login::Vector{UInt8}, user::String, perm::Int32)
 #     # returns Bool
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function hasTablePermission(login::Vector{UInt8}, user::UTF8String, table::UTF8String, perm::Int32)
+# function hasTablePermission(login::Vector{UInt8}, user::String, table::String, perm::Int32)
 #     # returns Bool
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
 # function listLocalUsers(login::Vector{UInt8})
-#     # returns Set{UTF8String}
+#     # returns Set{String}
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function revokeSystemPermission(login::Vector{UInt8}, user::UTF8String, perm::Int32)
+# function revokeSystemPermission(login::Vector{UInt8}, user::String, perm::Int32)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
-# function revokeTablePermission(login::Vector{UInt8}, user::UTF8String, table::UTF8String, perm::Int32)
+# function revokeTablePermission(login::Vector{UInt8}, user::String, table::String, perm::Int32)
 #     # returns nothing
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function createBatchScanner(login::Vector{UInt8}, tableName::UTF8String, options::BatchScanOptions)
-#     # returns UTF8String
+# function createBatchScanner(login::Vector{UInt8}, tableName::String, options::BatchScanOptions)
+#     # returns String
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function createScanner(login::Vector{UInt8}, tableName::UTF8String, options::ScanOptions)
-#     # returns UTF8String
+# function createScanner(login::Vector{UInt8}, tableName::String, options::ScanOptions)
+#     # returns String
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function hasNext(scanner::UTF8String)
+# function hasNext(scanner::String)
 #     # returns Bool
 #     # throws ouch1::UnknownScanner
-# function nextEntry(scanner::UTF8String)
+# function nextEntry(scanner::String)
 #     # returns KeyValueAndPeek
 #     # throws ouch1::NoMoreEntriesException
 #     # throws ouch2::UnknownScanner
 #     # throws ouch3::AccumuloSecurityException
-# function nextK(scanner::UTF8String, k::Int32)
+# function nextK(scanner::String, k::Int32)
 #     # returns ScanResult
 #     # throws ouch1::NoMoreEntriesException
 #     # throws ouch2::UnknownScanner
 #     # throws ouch3::AccumuloSecurityException
-# function closeScanner(scanner::UTF8String)
+# function closeScanner(scanner::String)
 #     # returns nothing
 #     # throws ouch1::UnknownScanner
-# function updateAndFlush(login::Vector{UInt8}, tableName::UTF8String, cells::Dict{Vector{UInt8},Vector{ColumnUpdate}})
+# function updateAndFlush(login::Vector{UInt8}, tableName::String, cells::Dict{Vector{UInt8},Vector{ColumnUpdate}})
 #     # returns nothing
 #     # throws outch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
 #     # throws ouch4::MutationsRejectedException
-# function createWriter(login::Vector{UInt8}, tableName::UTF8String, opts::WriterOptions)
-#     # returns UTF8String
+# function createWriter(login::Vector{UInt8}, tableName::String, opts::WriterOptions)
+#     # returns String
 #     # throws outch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function update(writer::UTF8String, cells::Dict{Vector{UInt8},Vector{ColumnUpdate}})
+# function update(writer::String, cells::Dict{Vector{UInt8},Vector{ColumnUpdate}})
 #     # returns nothing
-# function flush(writer::UTF8String)
-#     # returns nothing
-#     # throws ouch1::UnknownWriter
-#     # throws ouch2::MutationsRejectedException
-# function closeWriter(writer::UTF8String)
+# function flush(writer::String)
 #     # returns nothing
 #     # throws ouch1::UnknownWriter
 #     # throws ouch2::MutationsRejectedException
-# function updateRowConditionally(login::Vector{UInt8}, tableName::UTF8String, row::Vector{UInt8}, updates::ConditionalUpdates)
+# function closeWriter(writer::String)
+#     # returns nothing
+#     # throws ouch1::UnknownWriter
+#     # throws ouch2::MutationsRejectedException
+# function updateRowConditionally(login::Vector{UInt8}, tableName::String, row::Vector{UInt8}, updates::ConditionalUpdates)
 #     # returns Int32
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function createConditionalWriter(login::Vector{UInt8}, tableName::UTF8String, options::ConditionalWriterOptions)
-#     # returns UTF8String
+# function createConditionalWriter(login::Vector{UInt8}, tableName::String, options::ConditionalWriterOptions)
+#     # returns String
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
-# function updateRowsConditionally(conditionalWriter::UTF8String, updates::Dict{Vector{UInt8},ConditionalUpdates})
+# function updateRowsConditionally(conditionalWriter::String, updates::Dict{Vector{UInt8},ConditionalUpdates})
 #     # returns Dict{Vector{UInt8},Int32}
 #     # throws ouch1::UnknownWriter
 #     # throws ouch2::AccumuloException
 #     # throws ouch3::AccumuloSecurityException
-# function closeConditionalWriter(conditionalWriter::UTF8String)
+# function closeConditionalWriter(conditionalWriter::String)
 #     # returns nothing
 # function getRowRange(row::Vector{UInt8})
 #     # returns Range
@@ -2571,7 +2571,7 @@ type AccumuloProxyClient <: AccumuloProxyClientBase
 end # type AccumuloProxyClient
 
 # Client callable method for login
-function login(c::AccumuloProxyClientBase, principal::UTF8String, loginProperties::Dict{UTF8String,UTF8String})
+function login(c::AccumuloProxyClientBase, principal::String, loginProperties::Dict{String,String})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "login", Thrift.MessageType.CALL, c.seqid)
@@ -2593,7 +2593,7 @@ function login(c::AccumuloProxyClientBase, principal::UTF8String, loginPropertie
 end # function login
 
 # Client callable method for addConstraint
-function addConstraint(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, constraintClassName::UTF8String)
+function addConstraint(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, constraintClassName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "addConstraint", Thrift.MessageType.CALL, c.seqid)
@@ -2618,7 +2618,7 @@ function addConstraint(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableNa
 end # function addConstraint
 
 # Client callable method for addSplits
-function addSplits(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, splits::Set{Vector{UInt8}})
+function addSplits(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, splits::Set{Vector{UInt8}})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "addSplits", Thrift.MessageType.CALL, c.seqid)
@@ -2642,7 +2642,7 @@ function addSplits(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::
 end # function addSplits
 
 # Client callable method for attachIterator
-function attachIterator(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, setting::IteratorSetting, scopes::Set{Int32})
+function attachIterator(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, setting::IteratorSetting, scopes::Set{Int32})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "attachIterator", Thrift.MessageType.CALL, c.seqid)
@@ -2667,7 +2667,7 @@ function attachIterator(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableN
 end # function attachIterator
 
 # Client callable method for checkIteratorConflicts
-function checkIteratorConflicts(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, setting::IteratorSetting, scopes::Set{Int32})
+function checkIteratorConflicts(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, setting::IteratorSetting, scopes::Set{Int32})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "checkIteratorConflicts", Thrift.MessageType.CALL, c.seqid)
@@ -2692,7 +2692,7 @@ function checkIteratorConflicts(c::AccumuloProxyClientBase, login::Vector{UInt8}
 end # function checkIteratorConflicts
 
 # Client callable method for clearLocatorCache
-function clearLocatorCache(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String)
+function clearLocatorCache(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "clearLocatorCache", Thrift.MessageType.CALL, c.seqid)
@@ -2713,7 +2713,7 @@ function clearLocatorCache(c::AccumuloProxyClientBase, login::Vector{UInt8}, tab
 end # function clearLocatorCache
 
 # Client callable method for cloneTable
-function cloneTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, newTableName::UTF8String, flush::Bool, propertiesToSet::Dict{UTF8String,UTF8String}, propertiesToExclude::Set{UTF8String})
+function cloneTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, newTableName::String, flush::Bool, propertiesToSet::Dict{String,String}, propertiesToExclude::Set{String})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "cloneTable", Thrift.MessageType.CALL, c.seqid)
@@ -2741,7 +2741,7 @@ function cloneTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName:
 end # function cloneTable
 
 # Client callable method for compactTable
-function compactTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, startRow::Vector{UInt8}, endRow::Vector{UInt8}, iterators::Vector{IteratorSetting}, flush::Bool, wait::Bool, compactionStrategy::CompactionStrategyConfig)
+function compactTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, startRow::Vector{UInt8}, endRow::Vector{UInt8}, iterators::Vector{IteratorSetting}, flush::Bool, wait::Bool, compactionStrategy::CompactionStrategyConfig)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "compactTable", Thrift.MessageType.CALL, c.seqid)
@@ -2770,7 +2770,7 @@ function compactTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableNam
 end # function compactTable
 
 # Client callable method for cancelCompaction
-function cancelCompaction(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String)
+function cancelCompaction(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "cancelCompaction", Thrift.MessageType.CALL, c.seqid)
@@ -2793,7 +2793,7 @@ function cancelCompaction(c::AccumuloProxyClientBase, login::Vector{UInt8}, tabl
 end # function cancelCompaction
 
 # Client callable method for createTable
-function createTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, versioningIter::Bool, _type::Int32)
+function createTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, versioningIter::Bool, _type::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "createTable", Thrift.MessageType.CALL, c.seqid)
@@ -2818,7 +2818,7 @@ function createTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName
 end # function createTable
 
 # Client callable method for deleteTable
-function deleteTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String)
+function deleteTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "deleteTable", Thrift.MessageType.CALL, c.seqid)
@@ -2841,7 +2841,7 @@ function deleteTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName
 end # function deleteTable
 
 # Client callable method for deleteRows
-function deleteRows(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, startRow::Vector{UInt8}, endRow::Vector{UInt8})
+function deleteRows(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, startRow::Vector{UInt8}, endRow::Vector{UInt8})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "deleteRows", Thrift.MessageType.CALL, c.seqid)
@@ -2866,7 +2866,7 @@ function deleteRows(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName:
 end # function deleteRows
 
 # Client callable method for exportTable
-function exportTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, exportDir::UTF8String)
+function exportTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, exportDir::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "exportTable", Thrift.MessageType.CALL, c.seqid)
@@ -2890,7 +2890,7 @@ function exportTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName
 end # function exportTable
 
 # Client callable method for flushTable
-function flushTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, startRow::Vector{UInt8}, endRow::Vector{UInt8}, wait::Bool)
+function flushTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, startRow::Vector{UInt8}, endRow::Vector{UInt8}, wait::Bool)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "flushTable", Thrift.MessageType.CALL, c.seqid)
@@ -2916,7 +2916,7 @@ function flushTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName:
 end # function flushTable
 
 # Client callable method for getDiskUsage
-function getDiskUsage(c::AccumuloProxyClientBase, login::Vector{UInt8}, tables::Set{UTF8String})
+function getDiskUsage(c::AccumuloProxyClientBase, login::Vector{UInt8}, tables::Set{String})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "getDiskUsage", Thrift.MessageType.CALL, c.seqid)
@@ -2940,7 +2940,7 @@ function getDiskUsage(c::AccumuloProxyClientBase, login::Vector{UInt8}, tables::
 end # function getDiskUsage
 
 # Client callable method for getLocalityGroups
-function getLocalityGroups(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String)
+function getLocalityGroups(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "getLocalityGroups", Thrift.MessageType.CALL, c.seqid)
@@ -2964,7 +2964,7 @@ function getLocalityGroups(c::AccumuloProxyClientBase, login::Vector{UInt8}, tab
 end # function getLocalityGroups
 
 # Client callable method for getIteratorSetting
-function getIteratorSetting(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, iteratorName::UTF8String, scope::Int32)
+function getIteratorSetting(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, iteratorName::String, scope::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "getIteratorSetting", Thrift.MessageType.CALL, c.seqid)
@@ -2990,7 +2990,7 @@ function getIteratorSetting(c::AccumuloProxyClientBase, login::Vector{UInt8}, ta
 end # function getIteratorSetting
 
 # Client callable method for getMaxRow
-function getMaxRow(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, auths::Set{Vector{UInt8}}, startRow::Vector{UInt8}, startInclusive::Bool, endRow::Vector{UInt8}, endInclusive::Bool)
+function getMaxRow(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, auths::Set{Vector{UInt8}}, startRow::Vector{UInt8}, startInclusive::Bool, endRow::Vector{UInt8}, endInclusive::Bool)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "getMaxRow", Thrift.MessageType.CALL, c.seqid)
@@ -3019,7 +3019,7 @@ function getMaxRow(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::
 end # function getMaxRow
 
 # Client callable method for getTableProperties
-function getTableProperties(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String)
+function getTableProperties(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "getTableProperties", Thrift.MessageType.CALL, c.seqid)
@@ -3043,7 +3043,7 @@ function getTableProperties(c::AccumuloProxyClientBase, login::Vector{UInt8}, ta
 end # function getTableProperties
 
 # Client callable method for importDirectory
-function importDirectory(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, importDir::UTF8String, failureDir::UTF8String, setTime::Bool)
+function importDirectory(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, importDir::String, failureDir::String, setTime::Bool)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "importDirectory", Thrift.MessageType.CALL, c.seqid)
@@ -3069,7 +3069,7 @@ function importDirectory(c::AccumuloProxyClientBase, login::Vector{UInt8}, table
 end # function importDirectory
 
 # Client callable method for importTable
-function importTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, importDir::UTF8String)
+function importTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, importDir::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "importTable", Thrift.MessageType.CALL, c.seqid)
@@ -3093,7 +3093,7 @@ function importTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName
 end # function importTable
 
 # Client callable method for listSplits
-function listSplits(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, maxSplits::Int32)
+function listSplits(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, maxSplits::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "listSplits", Thrift.MessageType.CALL, c.seqid)
@@ -3138,7 +3138,7 @@ function listTables(c::AccumuloProxyClientBase, login::Vector{UInt8})
 end # function listTables
 
 # Client callable method for listIterators
-function listIterators(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String)
+function listIterators(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "listIterators", Thrift.MessageType.CALL, c.seqid)
@@ -3162,7 +3162,7 @@ function listIterators(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableNa
 end # function listIterators
 
 # Client callable method for listConstraints
-function listConstraints(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String)
+function listConstraints(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "listConstraints", Thrift.MessageType.CALL, c.seqid)
@@ -3186,7 +3186,7 @@ function listConstraints(c::AccumuloProxyClientBase, login::Vector{UInt8}, table
 end # function listConstraints
 
 # Client callable method for mergeTablets
-function mergeTablets(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, startRow::Vector{UInt8}, endRow::Vector{UInt8})
+function mergeTablets(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, startRow::Vector{UInt8}, endRow::Vector{UInt8})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "mergeTablets", Thrift.MessageType.CALL, c.seqid)
@@ -3211,7 +3211,7 @@ function mergeTablets(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableNam
 end # function mergeTablets
 
 # Client callable method for offlineTable
-function offlineTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, wait::Bool)
+function offlineTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, wait::Bool)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "offlineTable", Thrift.MessageType.CALL, c.seqid)
@@ -3235,7 +3235,7 @@ function offlineTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableNam
 end # function offlineTable
 
 # Client callable method for onlineTable
-function onlineTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, wait::Bool)
+function onlineTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, wait::Bool)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "onlineTable", Thrift.MessageType.CALL, c.seqid)
@@ -3259,7 +3259,7 @@ function onlineTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName
 end # function onlineTable
 
 # Client callable method for removeConstraint
-function removeConstraint(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, constraint::Int32)
+function removeConstraint(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, constraint::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "removeConstraint", Thrift.MessageType.CALL, c.seqid)
@@ -3283,7 +3283,7 @@ function removeConstraint(c::AccumuloProxyClientBase, login::Vector{UInt8}, tabl
 end # function removeConstraint
 
 # Client callable method for removeIterator
-function removeIterator(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, iterName::UTF8String, scopes::Set{Int32})
+function removeIterator(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, iterName::String, scopes::Set{Int32})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "removeIterator", Thrift.MessageType.CALL, c.seqid)
@@ -3308,7 +3308,7 @@ function removeIterator(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableN
 end # function removeIterator
 
 # Client callable method for removeTableProperty
-function removeTableProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, property::UTF8String)
+function removeTableProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, property::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "removeTableProperty", Thrift.MessageType.CALL, c.seqid)
@@ -3332,7 +3332,7 @@ function removeTableProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, t
 end # function removeTableProperty
 
 # Client callable method for renameTable
-function renameTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, oldTableName::UTF8String, newTableName::UTF8String)
+function renameTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, oldTableName::String, newTableName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "renameTable", Thrift.MessageType.CALL, c.seqid)
@@ -3357,7 +3357,7 @@ function renameTable(c::AccumuloProxyClientBase, login::Vector{UInt8}, oldTableN
 end # function renameTable
 
 # Client callable method for setLocalityGroups
-function setLocalityGroups(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, groups::Dict{UTF8String,Set{UTF8String}})
+function setLocalityGroups(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, groups::Dict{String,Set{String}})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "setLocalityGroups", Thrift.MessageType.CALL, c.seqid)
@@ -3381,7 +3381,7 @@ function setLocalityGroups(c::AccumuloProxyClientBase, login::Vector{UInt8}, tab
 end # function setLocalityGroups
 
 # Client callable method for setTableProperty
-function setTableProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, property::UTF8String, value::UTF8String)
+function setTableProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, property::String, value::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "setTableProperty", Thrift.MessageType.CALL, c.seqid)
@@ -3406,7 +3406,7 @@ function setTableProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, tabl
 end # function setTableProperty
 
 # Client callable method for splitRangeByTablets
-function splitRangeByTablets(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, range::Range, maxSplits::Int32)
+function splitRangeByTablets(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, range::Range, maxSplits::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "splitRangeByTablets", Thrift.MessageType.CALL, c.seqid)
@@ -3432,7 +3432,7 @@ function splitRangeByTablets(c::AccumuloProxyClientBase, login::Vector{UInt8}, t
 end # function splitRangeByTablets
 
 # Client callable method for tableExists
-function tableExists(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String)
+function tableExists(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "tableExists", Thrift.MessageType.CALL, c.seqid)
@@ -3473,7 +3473,7 @@ function tableIdMap(c::AccumuloProxyClientBase, login::Vector{UInt8})
 end # function tableIdMap
 
 # Client callable method for testTableClassLoad
-function testTableClassLoad(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, className::UTF8String, asTypeName::UTF8String)
+function testTableClassLoad(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, className::String, asTypeName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "testTableClassLoad", Thrift.MessageType.CALL, c.seqid)
@@ -3499,7 +3499,7 @@ function testTableClassLoad(c::AccumuloProxyClientBase, login::Vector{UInt8}, ta
 end # function testTableClassLoad
 
 # Client callable method for pingTabletServer
-function pingTabletServer(c::AccumuloProxyClientBase, login::Vector{UInt8}, tserver::UTF8String)
+function pingTabletServer(c::AccumuloProxyClientBase, login::Vector{UInt8}, tserver::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "pingTabletServer", Thrift.MessageType.CALL, c.seqid)
@@ -3521,7 +3521,7 @@ function pingTabletServer(c::AccumuloProxyClientBase, login::Vector{UInt8}, tser
 end # function pingTabletServer
 
 # Client callable method for getActiveScans
-function getActiveScans(c::AccumuloProxyClientBase, login::Vector{UInt8}, tserver::UTF8String)
+function getActiveScans(c::AccumuloProxyClientBase, login::Vector{UInt8}, tserver::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "getActiveScans", Thrift.MessageType.CALL, c.seqid)
@@ -3544,7 +3544,7 @@ function getActiveScans(c::AccumuloProxyClientBase, login::Vector{UInt8}, tserve
 end # function getActiveScans
 
 # Client callable method for getActiveCompactions
-function getActiveCompactions(c::AccumuloProxyClientBase, login::Vector{UInt8}, tserver::UTF8String)
+function getActiveCompactions(c::AccumuloProxyClientBase, login::Vector{UInt8}, tserver::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "getActiveCompactions", Thrift.MessageType.CALL, c.seqid)
@@ -3631,7 +3631,7 @@ function getTabletServers(c::AccumuloProxyClientBase, login::Vector{UInt8})
 end # function getTabletServers
 
 # Client callable method for removeProperty
-function removeProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, property::UTF8String)
+function removeProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, property::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "removeProperty", Thrift.MessageType.CALL, c.seqid)
@@ -3653,7 +3653,7 @@ function removeProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, proper
 end # function removeProperty
 
 # Client callable method for setProperty
-function setProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, property::UTF8String, value::UTF8String)
+function setProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, property::String, value::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "setProperty", Thrift.MessageType.CALL, c.seqid)
@@ -3676,7 +3676,7 @@ function setProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, property:
 end # function setProperty
 
 # Client callable method for testClassLoad
-function testClassLoad(c::AccumuloProxyClientBase, login::Vector{UInt8}, className::UTF8String, asTypeName::UTF8String)
+function testClassLoad(c::AccumuloProxyClientBase, login::Vector{UInt8}, className::String, asTypeName::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "testClassLoad", Thrift.MessageType.CALL, c.seqid)
@@ -3700,7 +3700,7 @@ function testClassLoad(c::AccumuloProxyClientBase, login::Vector{UInt8}, classNa
 end # function testClassLoad
 
 # Client callable method for authenticateUser
-function authenticateUser(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, properties::Dict{UTF8String,UTF8String})
+function authenticateUser(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, properties::Dict{String,String})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "authenticateUser", Thrift.MessageType.CALL, c.seqid)
@@ -3724,7 +3724,7 @@ function authenticateUser(c::AccumuloProxyClientBase, login::Vector{UInt8}, user
 end # function authenticateUser
 
 # Client callable method for changeUserAuthorizations
-function changeUserAuthorizations(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, authorizations::Set{Vector{UInt8}})
+function changeUserAuthorizations(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, authorizations::Set{Vector{UInt8}})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "changeUserAuthorizations", Thrift.MessageType.CALL, c.seqid)
@@ -3747,7 +3747,7 @@ function changeUserAuthorizations(c::AccumuloProxyClientBase, login::Vector{UInt
 end # function changeUserAuthorizations
 
 # Client callable method for changeLocalUserPassword
-function changeLocalUserPassword(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, password::Vector{UInt8})
+function changeLocalUserPassword(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, password::Vector{UInt8})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "changeLocalUserPassword", Thrift.MessageType.CALL, c.seqid)
@@ -3770,7 +3770,7 @@ function changeLocalUserPassword(c::AccumuloProxyClientBase, login::Vector{UInt8
 end # function changeLocalUserPassword
 
 # Client callable method for createLocalUser
-function createLocalUser(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, password::Vector{UInt8})
+function createLocalUser(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, password::Vector{UInt8})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "createLocalUser", Thrift.MessageType.CALL, c.seqid)
@@ -3793,7 +3793,7 @@ function createLocalUser(c::AccumuloProxyClientBase, login::Vector{UInt8}, user:
 end # function createLocalUser
 
 # Client callable method for dropLocalUser
-function dropLocalUser(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String)
+function dropLocalUser(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "dropLocalUser", Thrift.MessageType.CALL, c.seqid)
@@ -3815,7 +3815,7 @@ function dropLocalUser(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::U
 end # function dropLocalUser
 
 # Client callable method for getUserAuthorizations
-function getUserAuthorizations(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String)
+function getUserAuthorizations(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "getUserAuthorizations", Thrift.MessageType.CALL, c.seqid)
@@ -3838,7 +3838,7 @@ function getUserAuthorizations(c::AccumuloProxyClientBase, login::Vector{UInt8},
 end # function getUserAuthorizations
 
 # Client callable method for grantSystemPermission
-function grantSystemPermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, perm::Int32)
+function grantSystemPermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, perm::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "grantSystemPermission", Thrift.MessageType.CALL, c.seqid)
@@ -3861,7 +3861,7 @@ function grantSystemPermission(c::AccumuloProxyClientBase, login::Vector{UInt8},
 end # function grantSystemPermission
 
 # Client callable method for grantTablePermission
-function grantTablePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, table::UTF8String, perm::Int32)
+function grantTablePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, table::String, perm::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "grantTablePermission", Thrift.MessageType.CALL, c.seqid)
@@ -3886,7 +3886,7 @@ function grantTablePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, 
 end # function grantTablePermission
 
 # Client callable method for hasSystemPermission
-function hasSystemPermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, perm::Int32)
+function hasSystemPermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, perm::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "hasSystemPermission", Thrift.MessageType.CALL, c.seqid)
@@ -3910,7 +3910,7 @@ function hasSystemPermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, u
 end # function hasSystemPermission
 
 # Client callable method for hasTablePermission
-function hasTablePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, table::UTF8String, perm::Int32)
+function hasTablePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, table::String, perm::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "hasTablePermission", Thrift.MessageType.CALL, c.seqid)
@@ -3959,7 +3959,7 @@ function listLocalUsers(c::AccumuloProxyClientBase, login::Vector{UInt8})
 end # function listLocalUsers
 
 # Client callable method for revokeSystemPermission
-function revokeSystemPermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, perm::Int32)
+function revokeSystemPermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, perm::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "revokeSystemPermission", Thrift.MessageType.CALL, c.seqid)
@@ -3982,7 +3982,7 @@ function revokeSystemPermission(c::AccumuloProxyClientBase, login::Vector{UInt8}
 end # function revokeSystemPermission
 
 # Client callable method for revokeTablePermission
-function revokeTablePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::UTF8String, table::UTF8String, perm::Int32)
+function revokeTablePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, table::String, perm::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "revokeTablePermission", Thrift.MessageType.CALL, c.seqid)
@@ -4007,7 +4007,7 @@ function revokeTablePermission(c::AccumuloProxyClientBase, login::Vector{UInt8},
 end # function revokeTablePermission
 
 # Client callable method for createBatchScanner
-function createBatchScanner(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, options::BatchScanOptions)
+function createBatchScanner(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, options::BatchScanOptions)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "createBatchScanner", Thrift.MessageType.CALL, c.seqid)
@@ -4032,7 +4032,7 @@ function createBatchScanner(c::AccumuloProxyClientBase, login::Vector{UInt8}, ta
 end # function createBatchScanner
 
 # Client callable method for createScanner
-function createScanner(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, options::ScanOptions)
+function createScanner(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, options::ScanOptions)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "createScanner", Thrift.MessageType.CALL, c.seqid)
@@ -4057,7 +4057,7 @@ function createScanner(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableNa
 end # function createScanner
 
 # Client callable method for hasNext
-function hasNext(c::AccumuloProxyClientBase, scanner::UTF8String)
+function hasNext(c::AccumuloProxyClientBase, scanner::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "hasNext", Thrift.MessageType.CALL, c.seqid)
@@ -4078,7 +4078,7 @@ function hasNext(c::AccumuloProxyClientBase, scanner::UTF8String)
 end # function hasNext
 
 # Client callable method for nextEntry
-function nextEntry(c::AccumuloProxyClientBase, scanner::UTF8String)
+function nextEntry(c::AccumuloProxyClientBase, scanner::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "nextEntry", Thrift.MessageType.CALL, c.seqid)
@@ -4101,7 +4101,7 @@ function nextEntry(c::AccumuloProxyClientBase, scanner::UTF8String)
 end # function nextEntry
 
 # Client callable method for nextK
-function nextK(c::AccumuloProxyClientBase, scanner::UTF8String, k::Int32)
+function nextK(c::AccumuloProxyClientBase, scanner::String, k::Int32)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "nextK", Thrift.MessageType.CALL, c.seqid)
@@ -4125,7 +4125,7 @@ function nextK(c::AccumuloProxyClientBase, scanner::UTF8String, k::Int32)
 end # function nextK
 
 # Client callable method for closeScanner
-function closeScanner(c::AccumuloProxyClientBase, scanner::UTF8String)
+function closeScanner(c::AccumuloProxyClientBase, scanner::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "closeScanner", Thrift.MessageType.CALL, c.seqid)
@@ -4145,7 +4145,7 @@ function closeScanner(c::AccumuloProxyClientBase, scanner::UTF8String)
 end # function closeScanner
 
 # Client callable method for updateAndFlush
-function updateAndFlush(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, cells::Dict{Vector{UInt8},Vector{ColumnUpdate}})
+function updateAndFlush(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, cells::Dict{Vector{UInt8},Vector{ColumnUpdate}})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "updateAndFlush", Thrift.MessageType.CALL, c.seqid)
@@ -4170,7 +4170,7 @@ function updateAndFlush(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableN
 end # function updateAndFlush
 
 # Client callable method for createWriter
-function createWriter(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, opts::WriterOptions)
+function createWriter(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, opts::WriterOptions)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "createWriter", Thrift.MessageType.CALL, c.seqid)
@@ -4195,7 +4195,7 @@ function createWriter(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableNam
 end # function createWriter
 
 # Client callable method for update
-function update(c::AccumuloProxyClientBase, writer::UTF8String, cells::Dict{Vector{UInt8},Vector{ColumnUpdate}})
+function update(c::AccumuloProxyClientBase, writer::String, cells::Dict{Vector{UInt8},Vector{ColumnUpdate}})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "update", Thrift.MessageType.ONEWAY, c.seqid)
@@ -4210,7 +4210,7 @@ function update(c::AccumuloProxyClientBase, writer::UTF8String, cells::Dict{Vect
 end # function update
 
 # Client callable method for flush
-function flush(c::AccumuloProxyClientBase, writer::UTF8String)
+function flush(c::AccumuloProxyClientBase, writer::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "flush", Thrift.MessageType.CALL, c.seqid)
@@ -4231,7 +4231,7 @@ function flush(c::AccumuloProxyClientBase, writer::UTF8String)
 end # function flush
 
 # Client callable method for closeWriter
-function closeWriter(c::AccumuloProxyClientBase, writer::UTF8String)
+function closeWriter(c::AccumuloProxyClientBase, writer::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "closeWriter", Thrift.MessageType.CALL, c.seqid)
@@ -4252,7 +4252,7 @@ function closeWriter(c::AccumuloProxyClientBase, writer::UTF8String)
 end # function closeWriter
 
 # Client callable method for updateRowConditionally
-function updateRowConditionally(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, row::Vector{UInt8}, updates::ConditionalUpdates)
+function updateRowConditionally(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, row::Vector{UInt8}, updates::ConditionalUpdates)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "updateRowConditionally", Thrift.MessageType.CALL, c.seqid)
@@ -4278,7 +4278,7 @@ function updateRowConditionally(c::AccumuloProxyClientBase, login::Vector{UInt8}
 end # function updateRowConditionally
 
 # Client callable method for createConditionalWriter
-function createConditionalWriter(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::UTF8String, options::ConditionalWriterOptions)
+function createConditionalWriter(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, options::ConditionalWriterOptions)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "createConditionalWriter", Thrift.MessageType.CALL, c.seqid)
@@ -4303,7 +4303,7 @@ function createConditionalWriter(c::AccumuloProxyClientBase, login::Vector{UInt8
 end # function createConditionalWriter
 
 # Client callable method for updateRowsConditionally
-function updateRowsConditionally(c::AccumuloProxyClientBase, conditionalWriter::UTF8String, updates::Dict{Vector{UInt8},ConditionalUpdates})
+function updateRowsConditionally(c::AccumuloProxyClientBase, conditionalWriter::String, updates::Dict{Vector{UInt8},ConditionalUpdates})
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "updateRowsConditionally", Thrift.MessageType.CALL, c.seqid)
@@ -4327,7 +4327,7 @@ function updateRowsConditionally(c::AccumuloProxyClientBase, conditionalWriter::
 end # function updateRowsConditionally
 
 # Client callable method for closeConditionalWriter
-function closeConditionalWriter(c::AccumuloProxyClientBase, conditionalWriter::UTF8String)
+function closeConditionalWriter(c::AccumuloProxyClientBase, conditionalWriter::String)
   p = c.p
   c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
   Thrift.writeMessageBegin(p, "closeConditionalWriter", Thrift.MessageType.CALL, c.seqid)

@@ -1,11 +1,11 @@
-typealias ScannerOptions Union{ScanOptions, BatchScanOptions}
+const ScannerOptions = Union{ScanOptions, BatchScanOptions}
 
 const DEFAULT_FETCH_SIZE = 1000
 
 type Scanner{T <: ScannerOptions}
     session::AccumuloSession
-    tablename::UTF8String
-    scannername::UTF8String
+    tablename::String
+    scannername::String
     options::T
 end
 
@@ -71,7 +71,7 @@ function as_col(colspec)
 end
 
 function scanner_opts(;rng::Union{Expr,SET} = :(),
-                columns::Vector{Tuple} = Tuple[],
+                columns::Vector = Tuple[],
                 iterators::Vector{IteratorSetting} = IteratorSetting[],
                 authorizations::SET = (),
                 buffer_size::Integer = 0,
@@ -92,9 +92,9 @@ function scanner_opts(;rng::Union{Expr,SET} = :(),
     opts
 end
 
-function scanner(session::AccumuloSession, tablename::AbstractString;
+function scanner(session::AccumuloSession, tablename::String;
                 rng::Union{Expr,SET} = :(),
-                columns::Vector{Tuple} = Tuple[],
+                columns::Vector = Tuple[],
                 iterators::Vector{IteratorSetting} = IteratorSetting[],
                 authorizations::SET = (),
                 buffer_size::Integer = 0,
@@ -103,14 +103,14 @@ function scanner(session::AccumuloSession, tablename::AbstractString;
     scanner(session, tablename, opts)
 end
 
-function scanner(session::AccumuloSession, tablename::AbstractString, opts::ScanOptions)
-    scanhandle = createScanner(client(session), handle(session), utf8(tablename), opts)
-    Scanner(session, utf8(tablename), scanhandle, opts)
+function scanner(session::AccumuloSession, tablename::String, opts::ScanOptions)
+    scanhandle = createScanner(client(session), handle(session), tablename, opts)
+    Scanner(session, tablename, scanhandle, opts)
 end
 
-function scanner(session::AccumuloSession, tablename::AbstractString, opts::BatchScanOptions)
-    scanhandle = createBatchScanner(client(session), handle(session), utf8(tablename), opts)
-    Scanner(session, utf8(tablename), scanhandle, opts)
+function scanner(session::AccumuloSession, tablename::String, opts::BatchScanOptions)
+    scanhandle = createBatchScanner(client(session), handle(session), tablename, opts)
+    Scanner(session, tablename, scanhandle, opts)
 end
 
 function scanner(f::Function, args...; kwargs...)

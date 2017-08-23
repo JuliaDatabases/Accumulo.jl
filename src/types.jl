@@ -1,4 +1,4 @@
-typealias SET Union{Set,Vector,Tuple}
+const SET = Union{Set,Vector,Tuple}
 
 bytes(r) = convert(Vector{UInt8}, r)
 

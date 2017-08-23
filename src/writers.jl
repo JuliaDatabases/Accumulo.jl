@@ -17,17 +17,17 @@ function _col_update(col_family, col_qualifier, col_visibility, value, timestamp
         :value => bytes(value)))
 end
 
-typealias ColumnUpdates         Vector{ColumnUpdate}
-typealias AbstractUpdate        Union{ColumnUpdates, ConditionalUpdates}
-typealias AbstractWriterOptions Union{WriterOptions, ConditionalWriterOptions}
+const ColumnUpdates         = Vector{ColumnUpdate}
+const AbstractUpdate        = Union{ColumnUpdates, ConditionalUpdates}
+const AbstractWriterOptions = Union{WriterOptions, ConditionalWriterOptions}
 
 ##
 # BatchUpdates collect mutations to be applied with a batch operation
 type BatchUpdates{T <: AbstractUpdate}
     mutations::Dict{Vector{UInt8}, T}
-    function BatchUpdates()
-        new(Dict{Vector{UInt8}, T}())
-    end
+end
+function (::Type{BatchUpdates{T}}){T}()
+    BatchUpdates{T}(Dict{Vector{UInt8}, T}())
 end
 
 batch() = BatchUpdates{ColumnUpdates}()
@@ -100,12 +100,12 @@ delete(cu::ConditionalUpdates, col_family, col_qualifier) = mutate(cu, _col_dele
 
 type BatchWriter{T <: AbstractWriterOptions}
     session::AccumuloSession
-    tablename::UTF8String
-    writername::UTF8String
+    tablename::String
+    writername::String
     options::T
 end
 
-function batch_writer(session::AccumuloSession, tablename::AbstractString;
+function batch_writer(session::AccumuloSession, tablename::String;
             max_memory::Integer=DEFAULT_MAX_MEMORY, latency_ms::Integer=DEFAULT_MAX_LATENCY,
             timeout_ms::Integer=DEFAULT_TIMEOUT, threads::Integer=DEFAULT_MAX_WRITE_THREADS,
             durability::Integer=Durability.DEFAULT)
@@ -114,7 +114,7 @@ function batch_writer(session::AccumuloSession, tablename::AbstractString;
                 :timeoutMs => Int64(timeout_ms),
                 :threads => Int32(threads),
                 :durability => Int32(durability)))
-    tbl = utf8(tablename)
+    tbl = tablename
     writer = createWriter(client(session), handle(session), tbl, opts)
     BatchWriter(session, tbl, writer, opts)
 end
@@ -128,7 +128,7 @@ function batch_writer(f::Function, args...; kwargs...)
     end
 end
 
-function conditional_batch_writer(session::AccumuloSession, tablename::AbstractString;
+function conditional_batch_writer(session::AccumuloSession, tablename::String;
             max_memory::Integer=-1, timeout_ms::Integer=DEFAULT_TIMEOUT,
             threads::Integer=DEFAULT_MAX_WRITE_THREADS, authorizations::SET=[],
             durability::Integer=Durability.DEFAULT)
@@ -142,7 +142,7 @@ function conditional_batch_writer(session::AccumuloSession, tablename::AbstractS
     end
     (durability == Durability.DEFAULT) || set_field!(opts, :durability, Int32(durability))
 
-    tbl = utf8(tablename)
+    tbl = tablename
     writer = createConditionalWriter(client(session), handle(session), tbl, opts)
     BatchWriter(session, tbl, writer, opts)
 end
@@ -165,11 +165,11 @@ flush(writer::BatchWriter{ConditionalWriterOptions}) = nothing  # there's no flu
 update(writer::BatchWriter{WriterOptions}, mutations::BatchUpdates{ColumnUpdates}) = update(client(writer.session), writer.writername, mutations.mutations)
 update(writer::BatchWriter{ConditionalWriterOptions}, mutations::BatchUpdates{ConditionalUpdates}) = updateRowsConditionally(client(writer.session), writer.writername, mutations.mutations)
 
-update(session::AccumuloSession, tablename::AbstractString, mutations::BatchUpdates{ColumnUpdates}) = updateAndFlush(client(session), handle(session), utf8(tablename), mutations.mutations)
-function update(session::AccumuloSession, tablename::AbstractString, upd::BatchUpdates{ConditionalUpdates})
+update(session::AccumuloSession, tablename::String, mutations::BatchUpdates{ColumnUpdates}) = updateAndFlush(client(session), handle(session), tablename, mutations.mutations)
+function update(session::AccumuloSession, tablename::String, upd::BatchUpdates{ConditionalUpdates})
     results = Dict{Vector{UInt8}, ConditionalStatus}()
     for (row, cu) in upd.mutations
-        result = updateRowConditionally(client(session), handle(session), utf8(tablename), row, cu)
+        result = updateRowConditionally(client(session), handle(session), tablename, row, cu)
         results[row] = result
     end
     results

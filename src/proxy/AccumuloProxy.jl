@@ -1049,6 +1049,59 @@ type revokeTablePermission_result
 end # type revokeTablePermission_result
 meta(t::Type{revokeTablePermission_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1, 2, 3], Dict{Symbol,Any}())
 
+# types encapsulating arguments and return values of method grantNamespacePermission
+
+type grantNamespacePermission_args
+  login::Vector{UInt8}
+  user::String
+  namespaceName::String
+  perm::Int32
+  grantNamespacePermission_args() = (o=new(); fillunset(o); o)
+end # type grantNamespacePermission_args
+
+type grantNamespacePermission_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  grantNamespacePermission_result() = (o=new(); fillunset(o); o)
+end # type grantNamespacePermission_result
+meta(t::Type{grantNamespacePermission_result}) = meta(t, Symbol[:ouch1, :ouch2], Int[1, 2], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method hasNamespacePermission
+
+type hasNamespacePermission_args
+  login::Vector{UInt8}
+  user::String
+  namespaceName::String
+  perm::Int32
+  hasNamespacePermission_args() = (o=new(); fillunset(o); o)
+end # type hasNamespacePermission_args
+
+type hasNamespacePermission_result
+  success::Bool
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  hasNamespacePermission_result() = (o=new(); fillunset(o); o)
+  hasNamespacePermission_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type hasNamespacePermission_result
+meta(t::Type{hasNamespacePermission_result}) = meta(t, Symbol[:success, :ouch1, :ouch2], Int[0, 1, 2], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method revokeNamespacePermission
+
+type revokeNamespacePermission_args
+  login::Vector{UInt8}
+  user::String
+  namespaceName::String
+  perm::Int32
+  revokeNamespacePermission_args() = (o=new(); fillunset(o); o)
+end # type revokeNamespacePermission_args
+
+type revokeNamespacePermission_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  revokeNamespacePermission_result() = (o=new(); fillunset(o); o)
+end # type revokeNamespacePermission_result
+meta(t::Type{revokeNamespacePermission_result}) = meta(t, Symbol[:ouch1, :ouch2], Int[1, 2], Dict{Symbol,Any}())
+
 # types encapsulating arguments and return values of method createBatchScanner
 
 type createBatchScanner_args
@@ -1320,6 +1373,349 @@ type getFollowing_result
 end # type getFollowing_result
 meta(t::Type{getFollowing_result}) = meta(t, Symbol[:success], Int[0], Dict{Symbol,Any}())
 
+# types encapsulating arguments and return values of method systemNamespace
+
+type systemNamespace_args
+end # type systemNamespace_args
+
+type systemNamespace_result
+  success::String
+  systemNamespace_result() = (o=new(); fillunset(o); o)
+  systemNamespace_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type systemNamespace_result
+meta(t::Type{systemNamespace_result}) = meta(t, Symbol[:success], Int[0], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method defaultNamespace
+
+type defaultNamespace_args
+end # type defaultNamespace_args
+
+type defaultNamespace_result
+  success::String
+  defaultNamespace_result() = (o=new(); fillunset(o); o)
+  defaultNamespace_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type defaultNamespace_result
+meta(t::Type{defaultNamespace_result}) = meta(t, Symbol[:success], Int[0], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method listNamespaces
+
+type listNamespaces_args
+  login::Vector{UInt8}
+  listNamespaces_args() = (o=new(); fillunset(o); o)
+end # type listNamespaces_args
+
+type listNamespaces_result
+  success::Vector{String}
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  listNamespaces_result() = (o=new(); fillunset(o); o)
+  listNamespaces_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type listNamespaces_result
+meta(t::Type{listNamespaces_result}) = meta(t, Symbol[:success, :ouch1, :ouch2], Int[0, 1, 2], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method namespaceExists
+
+type namespaceExists_args
+  login::Vector{UInt8}
+  namespaceName::String
+  namespaceExists_args() = (o=new(); fillunset(o); o)
+end # type namespaceExists_args
+
+type namespaceExists_result
+  success::Bool
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  namespaceExists_result() = (o=new(); fillunset(o); o)
+  namespaceExists_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type namespaceExists_result
+meta(t::Type{namespaceExists_result}) = meta(t, Symbol[:success, :ouch1, :ouch2], Int[0, 1, 2], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method createNamespace
+
+type createNamespace_args
+  login::Vector{UInt8}
+  namespaceName::String
+  createNamespace_args() = (o=new(); fillunset(o); o)
+end # type createNamespace_args
+
+type createNamespace_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceExistsException
+  createNamespace_result() = (o=new(); fillunset(o); o)
+end # type createNamespace_result
+meta(t::Type{createNamespace_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method deleteNamespace
+
+type deleteNamespace_args
+  login::Vector{UInt8}
+  namespaceName::String
+  deleteNamespace_args() = (o=new(); fillunset(o); o)
+end # type deleteNamespace_args
+
+type deleteNamespace_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  ouch4::NamespaceNotEmptyException
+  deleteNamespace_result() = (o=new(); fillunset(o); o)
+end # type deleteNamespace_result
+meta(t::Type{deleteNamespace_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3, :ouch4], Int[1, 2, 3, 4], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method renameNamespace
+
+type renameNamespace_args
+  login::Vector{UInt8}
+  oldNamespaceName::String
+  newNamespaceName::String
+  renameNamespace_args() = (o=new(); fillunset(o); o)
+end # type renameNamespace_args
+
+type renameNamespace_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  ouch4::NamespaceExistsException
+  renameNamespace_result() = (o=new(); fillunset(o); o)
+end # type renameNamespace_result
+meta(t::Type{renameNamespace_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3, :ouch4], Int[1, 2, 3, 4], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method setNamespaceProperty
+
+type setNamespaceProperty_args
+  login::Vector{UInt8}
+  namespaceName::String
+  property::String
+  value::String
+  setNamespaceProperty_args() = (o=new(); fillunset(o); o)
+end # type setNamespaceProperty_args
+
+type setNamespaceProperty_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  setNamespaceProperty_result() = (o=new(); fillunset(o); o)
+end # type setNamespaceProperty_result
+meta(t::Type{setNamespaceProperty_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method removeNamespaceProperty
+
+type removeNamespaceProperty_args
+  login::Vector{UInt8}
+  namespaceName::String
+  property::String
+  removeNamespaceProperty_args() = (o=new(); fillunset(o); o)
+end # type removeNamespaceProperty_args
+
+type removeNamespaceProperty_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  removeNamespaceProperty_result() = (o=new(); fillunset(o); o)
+end # type removeNamespaceProperty_result
+meta(t::Type{removeNamespaceProperty_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method getNamespaceProperties
+
+type getNamespaceProperties_args
+  login::Vector{UInt8}
+  namespaceName::String
+  getNamespaceProperties_args() = (o=new(); fillunset(o); o)
+end # type getNamespaceProperties_args
+
+type getNamespaceProperties_result
+  success::Dict{String,String}
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  getNamespaceProperties_result() = (o=new(); fillunset(o); o)
+  getNamespaceProperties_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type getNamespaceProperties_result
+meta(t::Type{getNamespaceProperties_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :ouch3], Int[0, 1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method namespaceIdMap
+
+type namespaceIdMap_args
+  login::Vector{UInt8}
+  namespaceIdMap_args() = (o=new(); fillunset(o); o)
+end # type namespaceIdMap_args
+
+type namespaceIdMap_result
+  success::Dict{String,String}
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  namespaceIdMap_result() = (o=new(); fillunset(o); o)
+  namespaceIdMap_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type namespaceIdMap_result
+meta(t::Type{namespaceIdMap_result}) = meta(t, Symbol[:success, :ouch1, :ouch2], Int[0, 1, 2], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method attachNamespaceIterator
+
+type attachNamespaceIterator_args
+  login::Vector{UInt8}
+  namespaceName::String
+  setting::IteratorSetting
+  scopes::Set{Int32}
+  attachNamespaceIterator_args() = (o=new(); fillunset(o); o)
+end # type attachNamespaceIterator_args
+
+type attachNamespaceIterator_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  attachNamespaceIterator_result() = (o=new(); fillunset(o); o)
+end # type attachNamespaceIterator_result
+meta(t::Type{attachNamespaceIterator_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method removeNamespaceIterator
+
+type removeNamespaceIterator_args
+  login::Vector{UInt8}
+  namespaceName::String
+  name::String
+  scopes::Set{Int32}
+  removeNamespaceIterator_args() = (o=new(); fillunset(o); o)
+end # type removeNamespaceIterator_args
+
+type removeNamespaceIterator_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  removeNamespaceIterator_result() = (o=new(); fillunset(o); o)
+end # type removeNamespaceIterator_result
+meta(t::Type{removeNamespaceIterator_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method getNamespaceIteratorSetting
+
+type getNamespaceIteratorSetting_args
+  login::Vector{UInt8}
+  namespaceName::String
+  name::String
+  scope::Int32
+  getNamespaceIteratorSetting_args() = (o=new(); fillunset(o); o)
+end # type getNamespaceIteratorSetting_args
+
+type getNamespaceIteratorSetting_result
+  success::IteratorSetting
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  getNamespaceIteratorSetting_result() = (o=new(); fillunset(o); o)
+  getNamespaceIteratorSetting_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type getNamespaceIteratorSetting_result
+meta(t::Type{getNamespaceIteratorSetting_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :ouch3], Int[0, 1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method listNamespaceIterators
+
+type listNamespaceIterators_args
+  login::Vector{UInt8}
+  namespaceName::String
+  listNamespaceIterators_args() = (o=new(); fillunset(o); o)
+end # type listNamespaceIterators_args
+
+type listNamespaceIterators_result
+  success::Dict{String,Set{Int32}}
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  listNamespaceIterators_result() = (o=new(); fillunset(o); o)
+  listNamespaceIterators_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type listNamespaceIterators_result
+meta(t::Type{listNamespaceIterators_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :ouch3], Int[0, 1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method checkNamespaceIteratorConflicts
+
+type checkNamespaceIteratorConflicts_args
+  login::Vector{UInt8}
+  namespaceName::String
+  setting::IteratorSetting
+  scopes::Set{Int32}
+  checkNamespaceIteratorConflicts_args() = (o=new(); fillunset(o); o)
+end # type checkNamespaceIteratorConflicts_args
+
+type checkNamespaceIteratorConflicts_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  checkNamespaceIteratorConflicts_result() = (o=new(); fillunset(o); o)
+end # type checkNamespaceIteratorConflicts_result
+meta(t::Type{checkNamespaceIteratorConflicts_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method addNamespaceConstraint
+
+type addNamespaceConstraint_args
+  login::Vector{UInt8}
+  namespaceName::String
+  constraintClassName::String
+  addNamespaceConstraint_args() = (o=new(); fillunset(o); o)
+end # type addNamespaceConstraint_args
+
+type addNamespaceConstraint_result
+  success::Int32
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  addNamespaceConstraint_result() = (o=new(); fillunset(o); o)
+  addNamespaceConstraint_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type addNamespaceConstraint_result
+meta(t::Type{addNamespaceConstraint_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :ouch3], Int[0, 1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method removeNamespaceConstraint
+
+type removeNamespaceConstraint_args
+  login::Vector{UInt8}
+  namespaceName::String
+  id::Int32
+  removeNamespaceConstraint_args() = (o=new(); fillunset(o); o)
+end # type removeNamespaceConstraint_args
+
+type removeNamespaceConstraint_result
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  removeNamespaceConstraint_result() = (o=new(); fillunset(o); o)
+end # type removeNamespaceConstraint_result
+meta(t::Type{removeNamespaceConstraint_result}) = meta(t, Symbol[:ouch1, :ouch2, :ouch3], Int[1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method listNamespaceConstraints
+
+type listNamespaceConstraints_args
+  login::Vector{UInt8}
+  namespaceName::String
+  listNamespaceConstraints_args() = (o=new(); fillunset(o); o)
+end # type listNamespaceConstraints_args
+
+type listNamespaceConstraints_result
+  success::Dict{String,Int32}
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  listNamespaceConstraints_result() = (o=new(); fillunset(o); o)
+  listNamespaceConstraints_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type listNamespaceConstraints_result
+meta(t::Type{listNamespaceConstraints_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :ouch3], Int[0, 1, 2, 3], Dict{Symbol,Any}())
+
+# types encapsulating arguments and return values of method testNamespaceClassLoad
+
+type testNamespaceClassLoad_args
+  login::Vector{UInt8}
+  namespaceName::String
+  className::String
+  asTypeName::String
+  testNamespaceClassLoad_args() = (o=new(); fillunset(o); o)
+end # type testNamespaceClassLoad_args
+
+type testNamespaceClassLoad_result
+  success::Bool
+  ouch1::AccumuloException
+  ouch2::AccumuloSecurityException
+  ouch3::NamespaceNotFoundException
+  testNamespaceClassLoad_result() = (o=new(); fillunset(o); o)
+  testNamespaceClassLoad_result(success) = (o=new(); fillset(o, :success); o.success=success; o)
+end # type testNamespaceClassLoad_result
+meta(t::Type{testNamespaceClassLoad_result}) = meta(t, Symbol[:success, :ouch1, :ouch2, :ouch3], Int[0, 1, 2, 3], Dict{Symbol,Any}())
+
 
 
 # Processor for AccumuloProxy service (to be used in server implementation)
@@ -1387,6 +1783,9 @@ type AccumuloProxyProcessor <: TProcessor
     handle(p.tp, ThriftHandler("listLocalUsers", _listLocalUsers, listLocalUsers_args, listLocalUsers_result))
     handle(p.tp, ThriftHandler("revokeSystemPermission", _revokeSystemPermission, revokeSystemPermission_args, revokeSystemPermission_result))
     handle(p.tp, ThriftHandler("revokeTablePermission", _revokeTablePermission, revokeTablePermission_args, revokeTablePermission_result))
+    handle(p.tp, ThriftHandler("grantNamespacePermission", _grantNamespacePermission, grantNamespacePermission_args, grantNamespacePermission_result))
+    handle(p.tp, ThriftHandler("hasNamespacePermission", _hasNamespacePermission, hasNamespacePermission_args, hasNamespacePermission_result))
+    handle(p.tp, ThriftHandler("revokeNamespacePermission", _revokeNamespacePermission, revokeNamespacePermission_args, revokeNamespacePermission_result))
     handle(p.tp, ThriftHandler("createBatchScanner", _createBatchScanner, createBatchScanner_args, createBatchScanner_result))
     handle(p.tp, ThriftHandler("createScanner", _createScanner, createScanner_args, createScanner_result))
     handle(p.tp, ThriftHandler("hasNext", _hasNext, hasNext_args, hasNext_result))
@@ -1404,6 +1803,26 @@ type AccumuloProxyProcessor <: TProcessor
     handle(p.tp, ThriftHandler("closeConditionalWriter", _closeConditionalWriter, closeConditionalWriter_args, closeConditionalWriter_result))
     handle(p.tp, ThriftHandler("getRowRange", _getRowRange, getRowRange_args, getRowRange_result))
     handle(p.tp, ThriftHandler("getFollowing", _getFollowing, getFollowing_args, getFollowing_result))
+    handle(p.tp, ThriftHandler("systemNamespace", _systemNamespace, systemNamespace_args, systemNamespace_result))
+    handle(p.tp, ThriftHandler("defaultNamespace", _defaultNamespace, defaultNamespace_args, defaultNamespace_result))
+    handle(p.tp, ThriftHandler("listNamespaces", _listNamespaces, listNamespaces_args, listNamespaces_result))
+    handle(p.tp, ThriftHandler("namespaceExists", _namespaceExists, namespaceExists_args, namespaceExists_result))
+    handle(p.tp, ThriftHandler("createNamespace", _createNamespace, createNamespace_args, createNamespace_result))
+    handle(p.tp, ThriftHandler("deleteNamespace", _deleteNamespace, deleteNamespace_args, deleteNamespace_result))
+    handle(p.tp, ThriftHandler("renameNamespace", _renameNamespace, renameNamespace_args, renameNamespace_result))
+    handle(p.tp, ThriftHandler("setNamespaceProperty", _setNamespaceProperty, setNamespaceProperty_args, setNamespaceProperty_result))
+    handle(p.tp, ThriftHandler("removeNamespaceProperty", _removeNamespaceProperty, removeNamespaceProperty_args, removeNamespaceProperty_result))
+    handle(p.tp, ThriftHandler("getNamespaceProperties", _getNamespaceProperties, getNamespaceProperties_args, getNamespaceProperties_result))
+    handle(p.tp, ThriftHandler("namespaceIdMap", _namespaceIdMap, namespaceIdMap_args, namespaceIdMap_result))
+    handle(p.tp, ThriftHandler("attachNamespaceIterator", _attachNamespaceIterator, attachNamespaceIterator_args, attachNamespaceIterator_result))
+    handle(p.tp, ThriftHandler("removeNamespaceIterator", _removeNamespaceIterator, removeNamespaceIterator_args, removeNamespaceIterator_result))
+    handle(p.tp, ThriftHandler("getNamespaceIteratorSetting", _getNamespaceIteratorSetting, getNamespaceIteratorSetting_args, getNamespaceIteratorSetting_result))
+    handle(p.tp, ThriftHandler("listNamespaceIterators", _listNamespaceIterators, listNamespaceIterators_args, listNamespaceIterators_result))
+    handle(p.tp, ThriftHandler("checkNamespaceIteratorConflicts", _checkNamespaceIteratorConflicts, checkNamespaceIteratorConflicts_args, checkNamespaceIteratorConflicts_result))
+    handle(p.tp, ThriftHandler("addNamespaceConstraint", _addNamespaceConstraint, addNamespaceConstraint_args, addNamespaceConstraint_result))
+    handle(p.tp, ThriftHandler("removeNamespaceConstraint", _removeNamespaceConstraint, removeNamespaceConstraint_args, removeNamespaceConstraint_result))
+    handle(p.tp, ThriftHandler("listNamespaceConstraints", _listNamespaceConstraints, listNamespaceConstraints_args, listNamespaceConstraints_result))
+    handle(p.tp, ThriftHandler("testNamespaceClassLoad", _testNamespaceClassLoad, testNamespaceClassLoad_args, testNamespaceClassLoad_result))
     p
   end
   function _login(inp::login_args)
@@ -2063,6 +2482,39 @@ type AccumuloProxyProcessor <: TProcessor
       rethrow()
     end # try
   end #function _revokeTablePermission
+  function _grantNamespacePermission(inp::grantNamespacePermission_args)
+    try
+      grantNamespacePermission(inp.login, inp.user, inp.namespaceName, inp.perm)
+      return grantNamespacePermission_result()
+    catch ex
+      exret = grantNamespacePermission_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      rethrow()
+    end # try
+  end #function _grantNamespacePermission
+  function _hasNamespacePermission(inp::hasNamespacePermission_args)
+    try
+      result = hasNamespacePermission(inp.login, inp.user, inp.namespaceName, inp.perm)
+      return hasNamespacePermission_result(result)
+    catch ex
+      exret = hasNamespacePermission_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      rethrow()
+    end # try
+  end #function _hasNamespacePermission
+  function _revokeNamespacePermission(inp::revokeNamespacePermission_args)
+    try
+      revokeNamespacePermission(inp.login, inp.user, inp.namespaceName, inp.perm)
+      return revokeNamespacePermission_result()
+    catch ex
+      exret = revokeNamespacePermission_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      rethrow()
+    end # try
+  end #function _revokeNamespacePermission
   function _createBatchScanner(inp::createBatchScanner_args)
     try
       result = createBatchScanner(inp.login, inp.tableName, inp.options)
@@ -2218,6 +2670,223 @@ type AccumuloProxyProcessor <: TProcessor
   _closeConditionalWriter(inp::closeConditionalWriter_args) = (closeConditionalWriter(); closeConditionalWriter_result())
   _getRowRange(inp::getRowRange_args) = getRowRange_result(getRowRange(inp.row))
   _getFollowing(inp::getFollowing_args) = getFollowing_result(getFollowing(inp.key, inp.part))
+  _systemNamespace(inp::systemNamespace_args) = systemNamespace_result(systemNamespace())
+  _defaultNamespace(inp::defaultNamespace_args) = defaultNamespace_result(defaultNamespace())
+  function _listNamespaces(inp::listNamespaces_args)
+    try
+      result = listNamespaces(inp.login)
+      return listNamespaces_result(result)
+    catch ex
+      exret = listNamespaces_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      rethrow()
+    end # try
+  end #function _listNamespaces
+  function _namespaceExists(inp::namespaceExists_args)
+    try
+      result = namespaceExists(inp.login, inp.namespaceName)
+      return namespaceExists_result(result)
+    catch ex
+      exret = namespaceExists_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      rethrow()
+    end # try
+  end #function _namespaceExists
+  function _createNamespace(inp::createNamespace_args)
+    try
+      createNamespace(inp.login, inp.namespaceName)
+      return createNamespace_result()
+    catch ex
+      exret = createNamespace_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceExistsException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _createNamespace
+  function _deleteNamespace(inp::deleteNamespace_args)
+    try
+      deleteNamespace(inp.login, inp.namespaceName)
+      return deleteNamespace_result()
+    catch ex
+      exret = deleteNamespace_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      isa(ex, NamespaceNotEmptyException) && (set_field!(exret, :ouch4, ex); return exret)
+      rethrow()
+    end # try
+  end #function _deleteNamespace
+  function _renameNamespace(inp::renameNamespace_args)
+    try
+      renameNamespace(inp.login, inp.oldNamespaceName, inp.newNamespaceName)
+      return renameNamespace_result()
+    catch ex
+      exret = renameNamespace_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      isa(ex, NamespaceExistsException) && (set_field!(exret, :ouch4, ex); return exret)
+      rethrow()
+    end # try
+  end #function _renameNamespace
+  function _setNamespaceProperty(inp::setNamespaceProperty_args)
+    try
+      setNamespaceProperty(inp.login, inp.namespaceName, inp.property, inp.value)
+      return setNamespaceProperty_result()
+    catch ex
+      exret = setNamespaceProperty_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _setNamespaceProperty
+  function _removeNamespaceProperty(inp::removeNamespaceProperty_args)
+    try
+      removeNamespaceProperty(inp.login, inp.namespaceName, inp.property)
+      return removeNamespaceProperty_result()
+    catch ex
+      exret = removeNamespaceProperty_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _removeNamespaceProperty
+  function _getNamespaceProperties(inp::getNamespaceProperties_args)
+    try
+      result = getNamespaceProperties(inp.login, inp.namespaceName)
+      return getNamespaceProperties_result(result)
+    catch ex
+      exret = getNamespaceProperties_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _getNamespaceProperties
+  function _namespaceIdMap(inp::namespaceIdMap_args)
+    try
+      result = namespaceIdMap(inp.login)
+      return namespaceIdMap_result(result)
+    catch ex
+      exret = namespaceIdMap_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      rethrow()
+    end # try
+  end #function _namespaceIdMap
+  function _attachNamespaceIterator(inp::attachNamespaceIterator_args)
+    try
+      attachNamespaceIterator(inp.login, inp.namespaceName, inp.setting, inp.scopes)
+      return attachNamespaceIterator_result()
+    catch ex
+      exret = attachNamespaceIterator_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _attachNamespaceIterator
+  function _removeNamespaceIterator(inp::removeNamespaceIterator_args)
+    try
+      removeNamespaceIterator(inp.login, inp.namespaceName, inp.name, inp.scopes)
+      return removeNamespaceIterator_result()
+    catch ex
+      exret = removeNamespaceIterator_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _removeNamespaceIterator
+  function _getNamespaceIteratorSetting(inp::getNamespaceIteratorSetting_args)
+    try
+      result = getNamespaceIteratorSetting(inp.login, inp.namespaceName, inp.name, inp.scope)
+      return getNamespaceIteratorSetting_result(result)
+    catch ex
+      exret = getNamespaceIteratorSetting_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _getNamespaceIteratorSetting
+  function _listNamespaceIterators(inp::listNamespaceIterators_args)
+    try
+      result = listNamespaceIterators(inp.login, inp.namespaceName)
+      return listNamespaceIterators_result(result)
+    catch ex
+      exret = listNamespaceIterators_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _listNamespaceIterators
+  function _checkNamespaceIteratorConflicts(inp::checkNamespaceIteratorConflicts_args)
+    try
+      checkNamespaceIteratorConflicts(inp.login, inp.namespaceName, inp.setting, inp.scopes)
+      return checkNamespaceIteratorConflicts_result()
+    catch ex
+      exret = checkNamespaceIteratorConflicts_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _checkNamespaceIteratorConflicts
+  function _addNamespaceConstraint(inp::addNamespaceConstraint_args)
+    try
+      result = addNamespaceConstraint(inp.login, inp.namespaceName, inp.constraintClassName)
+      return addNamespaceConstraint_result(result)
+    catch ex
+      exret = addNamespaceConstraint_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _addNamespaceConstraint
+  function _removeNamespaceConstraint(inp::removeNamespaceConstraint_args)
+    try
+      removeNamespaceConstraint(inp.login, inp.namespaceName, inp.id)
+      return removeNamespaceConstraint_result()
+    catch ex
+      exret = removeNamespaceConstraint_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _removeNamespaceConstraint
+  function _listNamespaceConstraints(inp::listNamespaceConstraints_args)
+    try
+      result = listNamespaceConstraints(inp.login, inp.namespaceName)
+      return listNamespaceConstraints_result(result)
+    catch ex
+      exret = listNamespaceConstraints_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _listNamespaceConstraints
+  function _testNamespaceClassLoad(inp::testNamespaceClassLoad_args)
+    try
+      result = testNamespaceClassLoad(inp.login, inp.namespaceName, inp.className, inp.asTypeName)
+      return testNamespaceClassLoad_result(result)
+    catch ex
+      exret = testNamespaceClassLoad_result()
+      isa(ex, AccumuloException) && (set_field!(exret, :ouch1, ex); return exret)
+      isa(ex, AccumuloSecurityException) && (set_field!(exret, :ouch2, ex); return exret)
+      isa(ex, NamespaceNotFoundException) && (set_field!(exret, :ouch3, ex); return exret)
+      rethrow()
+    end # try
+  end #function _testNamespaceClassLoad
 end # type AccumuloProxyProcessor
 process(p::AccumuloProxyProcessor, inp::TProtocol, outp::TProtocol) = process(p.tp, inp, outp)
 distribute(p::AccumuloProxyProcessor) = distribute(p.tp)
@@ -2493,6 +3162,18 @@ distribute(p::AccumuloProxyProcessor) = distribute(p.tp)
 #     # throws ouch1::AccumuloException
 #     # throws ouch2::AccumuloSecurityException
 #     # throws ouch3::TableNotFoundException
+# function grantNamespacePermission(login::Vector{UInt8}, user::String, namespaceName::String, perm::Int32)
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+# function hasNamespacePermission(login::Vector{UInt8}, user::String, namespaceName::String, perm::Int32)
+#     # returns Bool
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+# function revokeNamespacePermission(login::Vector{UInt8}, user::String, namespaceName::String, perm::Int32)
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
 # function createBatchScanner(login::Vector{UInt8}, tableName::String, options::BatchScanOptions)
 #     # returns String
 #     # throws ouch1::AccumuloException
@@ -2561,6 +3242,99 @@ distribute(p::AccumuloProxyProcessor) = distribute(p.tp)
 #     # returns Range
 # function getFollowing(key::Key, part::Int32)
 #     # returns Key
+# function systemNamespace()
+#     # returns String
+# function defaultNamespace()
+#     # returns String
+# function listNamespaces(login::Vector{UInt8})
+#     # returns Vector{String}
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+# function namespaceExists(login::Vector{UInt8}, namespaceName::String)
+#     # returns Bool
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+# function createNamespace(login::Vector{UInt8}, namespaceName::String)
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceExistsException
+# function deleteNamespace(login::Vector{UInt8}, namespaceName::String)
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+#     # throws ouch4::NamespaceNotEmptyException
+# function renameNamespace(login::Vector{UInt8}, oldNamespaceName::String, newNamespaceName::String)
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+#     # throws ouch4::NamespaceExistsException
+# function setNamespaceProperty(login::Vector{UInt8}, namespaceName::String, property::String, value::String)
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function removeNamespaceProperty(login::Vector{UInt8}, namespaceName::String, property::String)
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function getNamespaceProperties(login::Vector{UInt8}, namespaceName::String)
+#     # returns Dict{String,String}
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function namespaceIdMap(login::Vector{UInt8})
+#     # returns Dict{String,String}
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+# function attachNamespaceIterator(login::Vector{UInt8}, namespaceName::String, setting::IteratorSetting, scopes::Set{Int32})
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function removeNamespaceIterator(login::Vector{UInt8}, namespaceName::String, name::String, scopes::Set{Int32})
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function getNamespaceIteratorSetting(login::Vector{UInt8}, namespaceName::String, name::String, scope::Int32)
+#     # returns IteratorSetting
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function listNamespaceIterators(login::Vector{UInt8}, namespaceName::String)
+#     # returns Dict{String,Set{Int32}}
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function checkNamespaceIteratorConflicts(login::Vector{UInt8}, namespaceName::String, setting::IteratorSetting, scopes::Set{Int32})
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function addNamespaceConstraint(login::Vector{UInt8}, namespaceName::String, constraintClassName::String)
+#     # returns Int32
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function removeNamespaceConstraint(login::Vector{UInt8}, namespaceName::String, id::Int32)
+#     # returns nothing
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function listNamespaceConstraints(login::Vector{UInt8}, namespaceName::String)
+#     # returns Dict{String,Int32}
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
+# function testNamespaceClassLoad(login::Vector{UInt8}, namespaceName::String, className::String, asTypeName::String)
+#     # returns Bool
+#     # throws ouch1::AccumuloException
+#     # throws ouch2::AccumuloSecurityException
+#     # throws ouch3::NamespaceNotFoundException
 
 
 # Client implementation for AccumuloProxy service
@@ -4006,6 +4780,79 @@ function revokeTablePermission(c::AccumuloProxyClientBase, login::Vector{UInt8},
   nothing
 end # function revokeTablePermission
 
+# Client callable method for grantNamespacePermission
+function grantNamespacePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, namespaceName::String, perm::Int32)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "grantNamespacePermission", Thrift.MessageType.CALL, c.seqid)
+  inp = grantNamespacePermission_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :user, user)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :perm, perm)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, grantNamespacePermission_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  nothing
+end # function grantNamespacePermission
+
+# Client callable method for hasNamespacePermission
+function hasNamespacePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, namespaceName::String, perm::Int32)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "hasNamespacePermission", Thrift.MessageType.CALL, c.seqid)
+  inp = hasNamespacePermission_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :user, user)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :perm, perm)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, hasNamespacePermission_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function hasNamespacePermission
+
+# Client callable method for revokeNamespacePermission
+function revokeNamespacePermission(c::AccumuloProxyClientBase, login::Vector{UInt8}, user::String, namespaceName::String, perm::Int32)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "revokeNamespacePermission", Thrift.MessageType.CALL, c.seqid)
+  inp = revokeNamespacePermission_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :user, user)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :perm, perm)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, revokeNamespacePermission_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  nothing
+end # function revokeNamespacePermission
+
 # Client callable method for createBatchScanner
 function createBatchScanner(c::AccumuloProxyClientBase, login::Vector{UInt8}, tableName::String, options::BatchScanOptions)
   p = c.p
@@ -4385,4 +5232,478 @@ function getFollowing(c::AccumuloProxyClientBase, key::Key, part::Int32)
   Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
   throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
 end # function getFollowing
+
+# Client callable method for systemNamespace
+function systemNamespace(c::AccumuloProxyClientBase)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "systemNamespace", Thrift.MessageType.CALL, c.seqid)
+  inp = systemNamespace_args()
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, systemNamespace_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function systemNamespace
+
+# Client callable method for defaultNamespace
+function defaultNamespace(c::AccumuloProxyClientBase)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "defaultNamespace", Thrift.MessageType.CALL, c.seqid)
+  inp = defaultNamespace_args()
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, defaultNamespace_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function defaultNamespace
+
+# Client callable method for listNamespaces
+function listNamespaces(c::AccumuloProxyClientBase, login::Vector{UInt8})
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "listNamespaces", Thrift.MessageType.CALL, c.seqid)
+  inp = listNamespaces_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, listNamespaces_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function listNamespaces
+
+# Client callable method for namespaceExists
+function namespaceExists(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "namespaceExists", Thrift.MessageType.CALL, c.seqid)
+  inp = namespaceExists_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, namespaceExists_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function namespaceExists
+
+# Client callable method for createNamespace
+function createNamespace(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "createNamespace", Thrift.MessageType.CALL, c.seqid)
+  inp = createNamespace_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, createNamespace_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  nothing
+end # function createNamespace
+
+# Client callable method for deleteNamespace
+function deleteNamespace(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "deleteNamespace", Thrift.MessageType.CALL, c.seqid)
+  inp = deleteNamespace_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, deleteNamespace_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  Thrift.has_field(outp, :ouch4) && throw(Thrift.get_field(outp, :ouch4))
+  nothing
+end # function deleteNamespace
+
+# Client callable method for renameNamespace
+function renameNamespace(c::AccumuloProxyClientBase, login::Vector{UInt8}, oldNamespaceName::String, newNamespaceName::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "renameNamespace", Thrift.MessageType.CALL, c.seqid)
+  inp = renameNamespace_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :oldNamespaceName, oldNamespaceName)
+  Thrift.set_field!(inp, :newNamespaceName, newNamespaceName)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, renameNamespace_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  Thrift.has_field(outp, :ouch4) && throw(Thrift.get_field(outp, :ouch4))
+  nothing
+end # function renameNamespace
+
+# Client callable method for setNamespaceProperty
+function setNamespaceProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String, property::String, value::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "setNamespaceProperty", Thrift.MessageType.CALL, c.seqid)
+  inp = setNamespaceProperty_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :property, property)
+  Thrift.set_field!(inp, :value, value)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, setNamespaceProperty_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  nothing
+end # function setNamespaceProperty
+
+# Client callable method for removeNamespaceProperty
+function removeNamespaceProperty(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String, property::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "removeNamespaceProperty", Thrift.MessageType.CALL, c.seqid)
+  inp = removeNamespaceProperty_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :property, property)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, removeNamespaceProperty_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  nothing
+end # function removeNamespaceProperty
+
+# Client callable method for getNamespaceProperties
+function getNamespaceProperties(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "getNamespaceProperties", Thrift.MessageType.CALL, c.seqid)
+  inp = getNamespaceProperties_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, getNamespaceProperties_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function getNamespaceProperties
+
+# Client callable method for namespaceIdMap
+function namespaceIdMap(c::AccumuloProxyClientBase, login::Vector{UInt8})
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "namespaceIdMap", Thrift.MessageType.CALL, c.seqid)
+  inp = namespaceIdMap_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, namespaceIdMap_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function namespaceIdMap
+
+# Client callable method for attachNamespaceIterator
+function attachNamespaceIterator(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String, setting::IteratorSetting, scopes::Set{Int32})
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "attachNamespaceIterator", Thrift.MessageType.CALL, c.seqid)
+  inp = attachNamespaceIterator_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :setting, setting)
+  Thrift.set_field!(inp, :scopes, scopes)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, attachNamespaceIterator_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  nothing
+end # function attachNamespaceIterator
+
+# Client callable method for removeNamespaceIterator
+function removeNamespaceIterator(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String, name::String, scopes::Set{Int32})
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "removeNamespaceIterator", Thrift.MessageType.CALL, c.seqid)
+  inp = removeNamespaceIterator_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :name, name)
+  Thrift.set_field!(inp, :scopes, scopes)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, removeNamespaceIterator_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  nothing
+end # function removeNamespaceIterator
+
+# Client callable method for getNamespaceIteratorSetting
+function getNamespaceIteratorSetting(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String, name::String, scope::Int32)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "getNamespaceIteratorSetting", Thrift.MessageType.CALL, c.seqid)
+  inp = getNamespaceIteratorSetting_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :name, name)
+  Thrift.set_field!(inp, :scope, scope)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, getNamespaceIteratorSetting_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function getNamespaceIteratorSetting
+
+# Client callable method for listNamespaceIterators
+function listNamespaceIterators(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "listNamespaceIterators", Thrift.MessageType.CALL, c.seqid)
+  inp = listNamespaceIterators_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, listNamespaceIterators_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function listNamespaceIterators
+
+# Client callable method for checkNamespaceIteratorConflicts
+function checkNamespaceIteratorConflicts(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String, setting::IteratorSetting, scopes::Set{Int32})
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "checkNamespaceIteratorConflicts", Thrift.MessageType.CALL, c.seqid)
+  inp = checkNamespaceIteratorConflicts_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :setting, setting)
+  Thrift.set_field!(inp, :scopes, scopes)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, checkNamespaceIteratorConflicts_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  nothing
+end # function checkNamespaceIteratorConflicts
+
+# Client callable method for addNamespaceConstraint
+function addNamespaceConstraint(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String, constraintClassName::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "addNamespaceConstraint", Thrift.MessageType.CALL, c.seqid)
+  inp = addNamespaceConstraint_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :constraintClassName, constraintClassName)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, addNamespaceConstraint_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function addNamespaceConstraint
+
+# Client callable method for removeNamespaceConstraint
+function removeNamespaceConstraint(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String, id::Int32)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "removeNamespaceConstraint", Thrift.MessageType.CALL, c.seqid)
+  inp = removeNamespaceConstraint_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :id, id)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, removeNamespaceConstraint_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  nothing
+end # function removeNamespaceConstraint
+
+# Client callable method for listNamespaceConstraints
+function listNamespaceConstraints(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "listNamespaceConstraints", Thrift.MessageType.CALL, c.seqid)
+  inp = listNamespaceConstraints_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, listNamespaceConstraints_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function listNamespaceConstraints
+
+# Client callable method for testNamespaceClassLoad
+function testNamespaceClassLoad(c::AccumuloProxyClientBase, login::Vector{UInt8}, namespaceName::String, className::String, asTypeName::String)
+  p = c.p
+  c.seqid = (c.seqid < (2^31-1)) ? (c.seqid+1) : 0
+  Thrift.writeMessageBegin(p, "testNamespaceClassLoad", Thrift.MessageType.CALL, c.seqid)
+  inp = testNamespaceClassLoad_args()
+  Thrift.set_field!(inp, :login, login)
+  Thrift.set_field!(inp, :namespaceName, namespaceName)
+  Thrift.set_field!(inp, :className, className)
+  Thrift.set_field!(inp, :asTypeName, asTypeName)
+  Thrift.write(p, inp)
+  Thrift.writeMessageEnd(p)
+  Thrift.flush(p.t)
+  
+  (fname, mtype, rseqid) = Thrift.readMessageBegin(p)
+  (mtype == Thrift.MessageType.EXCEPTION) && throw(Thrift.read(p, Thrift.TApplicationException()))
+  outp = Thrift.read(p, testNamespaceClassLoad_result())
+  Thrift.readMessageEnd(p)
+  (rseqid != c.seqid) && throw(Thrift.TApplicationException(ApplicationExceptionType.BAD_SEQUENCE_ID, "response sequence id $rseqid did not match request ($(c.seqid))"))
+  Thrift.has_field(outp, :ouch1) && throw(Thrift.get_field(outp, :ouch1))
+  Thrift.has_field(outp, :ouch2) && throw(Thrift.get_field(outp, :ouch2))
+  Thrift.has_field(outp, :ouch3) && throw(Thrift.get_field(outp, :ouch3))
+  Thrift.has_field(outp, :success) && (return Thrift.get_field(outp, :success))
+  throw(Thrift.TApplicationException(Thrift.ApplicationExceptionType.MISSING_RESULT, "retrieve failed: unknown result"))
+end # function testNamespaceClassLoad
 

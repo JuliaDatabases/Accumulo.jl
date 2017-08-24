@@ -131,6 +131,22 @@ enum SystemPermission {
   DROP_USER = 5,
   ALTER_USER = 6,
   SYSTEM = 7,
+  CREATE_NAMESPACE = 8,
+  DROP_NAMESPACE = 9,
+  ALTER_NAMESPACE = 10,
+  OBTAIN_DELEGATION_TOKEN = 11,
+}
+
+enum NamespacePermission {
+  READ = 0,
+  WRITE = 1,
+  ALTER_NAMESPACE = 2,
+  GRANT = 3,
+  ALTER_TABLE = 4,
+  CREATE_TABLE = 5,
+  DROP_TABLE = 6,
+  BULK_IMPORT = 7,
+  DROP_NAMESPACE = 8
 }
 
 enum ScanType {
@@ -166,8 +182,8 @@ struct Condition {
 
 //since 1.6.0
 struct ConditionalUpdates {
-	2:list<Condition> conditions
-	3:list<ColumnUpdate> updates 
+    2:list<Condition> conditions
+    3:list<ColumnUpdate> updates 
 }
 
 //since 1.6.0
@@ -181,11 +197,11 @@ enum ConditionalStatus {
 
 //since 1.7.0
 enum Durability {
-	DEFAULT,
-	NONE,
-	LOG,
-	FLUSH,
-	SYNC
+    DEFAULT,
+    NONE,
+    LOG,
+    FLUSH,
+    SYNC
 }
 
 //since 1.6.0
@@ -297,6 +313,18 @@ exception MutationsRejectedException {
   1:string msg
 }
 
+exception NamespaceExistsException {
+  1:string msg
+}
+
+exception NamespaceNotFoundException {
+  1:string msg
+}
+
+exception NamespaceNotEmptyException {
+  1:string msg
+}
+
 service AccumuloProxy
 {
   // get an authentication token
@@ -317,8 +345,8 @@ service AccumuloProxy
                                                                                                        throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:TableNotFoundException ouch3, 4:TableExistsException ouch4);
   //changed in 1.7.0, see comment at top about compatibility
   void compactTable (1:binary login, 2:string tableName, 3:binary startRow, 4:binary endRow, 
-		     5:list<IteratorSetting> iterators, 6:bool flush, 7:bool wait, 
-		     8:CompactionStrategyConfig compactionStrategy)                                            throws (1:AccumuloSecurityException ouch1, 2:TableNotFoundException ouch2, 3:AccumuloException ouch3);
+             5:list<IteratorSetting> iterators, 6:bool flush, 7:bool wait, 
+             8:CompactionStrategyConfig compactionStrategy)                                            throws (1:AccumuloSecurityException ouch1, 2:TableNotFoundException ouch2, 3:AccumuloException ouch3);
   void cancelCompaction(1:binary login, 2:string tableName)                                            throws (1:AccumuloSecurityException ouch1, 2:TableNotFoundException ouch2, 3:AccumuloException ouch3);
                                                                                                             
   void createTable (1:binary login, 2:string tableName, 3:bool versioningIter, 4:TimeType type)        throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:TableExistsException ouch3);
@@ -390,6 +418,12 @@ service AccumuloProxy
   set<string> listLocalUsers (1:binary login)                                                        throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:TableNotFoundException ouch3);
   void revokeSystemPermission (1:binary login, 2:string user, 3:SystemPermission perm)               throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2);
   void revokeTablePermission (1:binary login, 2:string user, 3:string table, 4:TablePermission perm) throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:TableNotFoundException ouch3);
+  void grantNamespacePermission (1:binary login, 2:string user, 3:string namespaceName,
+                                 4:NamespacePermission perm)                                         throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2);
+  bool hasNamespacePermission (1:binary login, 2:string user, 3:string namespaceName,
+                               4:NamespacePermission perm)                                           throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2);
+  void revokeNamespacePermission (1:binary login, 2:string user, 3:string namespaceName,
+                                  4:NamespacePermission perm)                                        throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2);
 
   // scanning
   string createBatchScanner(1:binary login, 2:string tableName, 3:BatchScanOptions options)          throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:TableNotFoundException ouch3);
@@ -427,4 +461,33 @@ service AccumuloProxy
   // utilities
   Range getRowRange(1:binary row);
   Key getFollowing(1:Key key, 2:PartialKey part);
+
+  // namespace operations, since 1.8.0
+  string systemNamespace();
+  string defaultNamespace();
+  list<string> listNamespaces(1:binary login)                                                      throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2);
+  bool namespaceExists(1:binary login, 2:string namespaceName)                                     throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2);
+  void createNamespace(1:binary login, 2:string namespaceName)                                     throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceExistsException ouch3);
+  void deleteNamespace(1:binary login, 2:string namespaceName)                                     throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3, 4:NamespaceNotEmptyException ouch4);
+  void renameNamespace(1:binary login, 2:string oldNamespaceName, 3:string newNamespaceName)       throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3, 4:NamespaceExistsException ouch4);
+  void setNamespaceProperty(1:binary login, 2:string namespaceName, 3:string property,
+                            4:string value)                                                        throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  void removeNamespaceProperty(1:binary login, 2:string namespaceName, 3:string property)          throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  map<string,string> getNamespaceProperties(1:binary login, 2:string namespaceName)                throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  map<string,string> namespaceIdMap(1:binary login)                                                throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2);
+  void attachNamespaceIterator(1:binary login, 2:string namespaceName, 3:IteratorSetting setting,
+                               4:set<IteratorScope> scopes)                                        throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  void removeNamespaceIterator(1:binary login, 2:string namespaceName, 3:string name,
+                               4:set<IteratorScope> scopes)                                        throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  IteratorSetting getNamespaceIteratorSetting(1:binary login, 2:string namespaceName,
+                                              3:string name, 4:IteratorScope scope)                throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  map<string,set<IteratorScope>> listNamespaceIterators(1:binary login, 2:string namespaceName)    throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  void checkNamespaceIteratorConflicts(1:binary login, 2:string namespaceName,
+                                       3:IteratorSetting setting, 4:set<IteratorScope> scopes)     throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  i32 addNamespaceConstraint(1:binary login, 2:string namespaceName,
+                             3:string constraintClassName)                                         throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  void removeNamespaceConstraint(1:binary login, 2:string namespaceName, 3:i32 id)                 throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  map<string,i32> listNamespaceConstraints(1:binary login, 2:string namespaceName)                 throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
+  bool testNamespaceClassLoad(1:binary login, 2:string namespaceName, 3:string className,
+                              4:string asTypeName)                                                 throws (1:AccumuloException ouch1, 2:AccumuloSecurityException ouch2, 3:NamespaceNotFoundException ouch3);
 }

@@ -17,6 +17,7 @@ export meta
 export PartialKey # enum
 export TablePermission # enum
 export SystemPermission # enum
+export NamespacePermission # enum
 export ScanType # enum
 export ScanState # enum
 export ConditionalStatus # enum
@@ -53,7 +54,10 @@ export AccumuloSecurityException # exception
 export TableNotFoundException # exception
 export TableExistsException # exception
 export MutationsRejectedException # exception
-export AccumuloProxyProcessor, AccumuloProxyClient, AccumuloProxyClientBase, login, addConstraint, addSplits, attachIterator, checkIteratorConflicts, clearLocatorCache, cloneTable, compactTable, cancelCompaction, createTable, deleteTable, deleteRows, exportTable, flushTable, getDiskUsage, getLocalityGroups, getIteratorSetting, getMaxRow, getTableProperties, importDirectory, importTable, listSplits, listTables, listIterators, listConstraints, mergeTablets, offlineTable, onlineTable, removeConstraint, removeIterator, removeTableProperty, renameTable, setLocalityGroups, setTableProperty, splitRangeByTablets, tableExists, tableIdMap, testTableClassLoad, pingTabletServer, getActiveScans, getActiveCompactions, getSiteConfiguration, getSystemConfiguration, getTabletServers, removeProperty, setProperty, testClassLoad, authenticateUser, changeUserAuthorizations, changeLocalUserPassword, createLocalUser, dropLocalUser, getUserAuthorizations, grantSystemPermission, grantTablePermission, hasSystemPermission, hasTablePermission, listLocalUsers, revokeSystemPermission, revokeTablePermission, createBatchScanner, createScanner, hasNext, nextEntry, nextK, closeScanner, updateAndFlush, createWriter, update, flush, closeWriter, updateRowConditionally, createConditionalWriter, updateRowsConditionally, closeConditionalWriter, getRowRange, getFollowing # service AccumuloProxy
+export NamespaceExistsException # exception
+export NamespaceNotFoundException # exception
+export NamespaceNotEmptyException # exception
+export AccumuloProxyProcessor, AccumuloProxyClient, AccumuloProxyClientBase, login, addConstraint, addSplits, attachIterator, checkIteratorConflicts, clearLocatorCache, cloneTable, compactTable, cancelCompaction, createTable, deleteTable, deleteRows, exportTable, flushTable, getDiskUsage, getLocalityGroups, getIteratorSetting, getMaxRow, getTableProperties, importDirectory, importTable, listSplits, listTables, listIterators, listConstraints, mergeTablets, offlineTable, onlineTable, removeConstraint, removeIterator, removeTableProperty, renameTable, setLocalityGroups, setTableProperty, splitRangeByTablets, tableExists, tableIdMap, testTableClassLoad, pingTabletServer, getActiveScans, getActiveCompactions, getSiteConfiguration, getSystemConfiguration, getTabletServers, removeProperty, setProperty, testClassLoad, authenticateUser, changeUserAuthorizations, changeLocalUserPassword, createLocalUser, dropLocalUser, getUserAuthorizations, grantSystemPermission, grantTablePermission, hasSystemPermission, hasTablePermission, listLocalUsers, revokeSystemPermission, revokeTablePermission, grantNamespacePermission, hasNamespacePermission, revokeNamespacePermission, createBatchScanner, createScanner, hasNext, nextEntry, nextK, closeScanner, updateAndFlush, createWriter, update, flush, closeWriter, updateRowConditionally, createConditionalWriter, updateRowsConditionally, closeConditionalWriter, getRowRange, getFollowing, systemNamespace, defaultNamespace, listNamespaces, namespaceExists, createNamespace, deleteNamespace, renameNamespace, setNamespaceProperty, removeNamespaceProperty, getNamespaceProperties, namespaceIdMap, attachNamespaceIterator, removeNamespaceIterator, getNamespaceIteratorSetting, listNamespaceIterators, checkNamespaceIteratorConflicts, addNamespaceConstraint, removeNamespaceConstraint, listNamespaceConstraints, testNamespaceClassLoad # service AccumuloProxy
 
 include("proxy_constants.jl")
 include("proxy_types.jl")

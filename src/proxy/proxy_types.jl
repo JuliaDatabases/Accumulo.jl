@@ -32,8 +32,25 @@ type _enum_SystemPermission
   DROP_USER::Int32
   ALTER_USER::Int32
   SYSTEM::Int32
+  CREATE_NAMESPACE::Int32
+  DROP_NAMESPACE::Int32
+  ALTER_NAMESPACE::Int32
+  OBTAIN_DELEGATION_TOKEN::Int32
 end
-const SystemPermission = _enum_SystemPermission(Int32(0), Int32(1), Int32(2), Int32(3), Int32(4), Int32(5), Int32(6), Int32(7))
+const SystemPermission = _enum_SystemPermission(Int32(0), Int32(1), Int32(2), Int32(3), Int32(4), Int32(5), Int32(6), Int32(7), Int32(8), Int32(9), Int32(10), Int32(11))
+
+type _enum_NamespacePermission
+  READ::Int32
+  WRITE::Int32
+  ALTER_NAMESPACE::Int32
+  GRANT::Int32
+  ALTER_TABLE::Int32
+  CREATE_TABLE::Int32
+  DROP_TABLE::Int32
+  BULK_IMPORT::Int32
+  DROP_NAMESPACE::Int32
+end
+const NamespacePermission = _enum_NamespacePermission(Int32(0), Int32(1), Int32(2), Int32(3), Int32(4), Int32(5), Int32(6), Int32(7), Int32(8))
 
 type _enum_ScanType
   SINGLE::Int32
@@ -309,5 +326,20 @@ type MutationsRejectedException <: Exception
   msg::String
   MutationsRejectedException() = (o=new(); fillunset(o); o)
 end # type MutationsRejectedException
+
+type NamespaceExistsException <: Exception
+  msg::String
+  NamespaceExistsException() = (o=new(); fillunset(o); o)
+end # type NamespaceExistsException
+
+type NamespaceNotFoundException <: Exception
+  msg::String
+  NamespaceNotFoundException() = (o=new(); fillunset(o); o)
+end # type NamespaceNotFoundException
+
+type NamespaceNotEmptyException <: Exception
+  msg::String
+  NamespaceNotEmptyException() = (o=new(); fillunset(o); o)
+end # type NamespaceNotEmptyException
 
 @compat abstract type AccumuloProxyClientBase end

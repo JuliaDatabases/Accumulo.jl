@@ -119,7 +119,7 @@ end # type ColumnUpdate
 meta(t::Type{ColumnUpdate}) = meta(t, Symbol[:colVisibility,:timestamp,:value,:deleteCell], Int[], Dict{Symbol,Any}())
 
 type DiskUsage
-  tables::Vector{UTF8String}
+  tables::Vector{String}
   usage::Int64
   DiskUsage() = (o=new(); fillunset(o); o)
 end # type DiskUsage
@@ -153,9 +153,9 @@ meta(t::Type{ScanColumn}) = meta(t, Symbol[:colQualifier], Int[], Dict{Symbol,An
 
 type IteratorSetting
   priority::Int32
-  name::UTF8String
-  iteratorClass::UTF8String
-  properties::Dict{UTF8String,UTF8String}
+  name::String
+  iteratorClass::String
+  properties::Dict{String,String}
   IteratorSetting() = (o=new(); fillunset(o); o)
 end # type IteratorSetting
 
@@ -186,7 +186,7 @@ type KeyValueAndPeek
 end # type KeyValueAndPeek
 
 type KeyExtent
-  tableId::UTF8String
+  tableId::String
   endRow::Vector{UInt8}
   prevEndRow::Vector{UInt8}
   KeyExtent() = (o=new(); fillunset(o); o)
@@ -226,9 +226,9 @@ end # type ConditionalWriterOptions
 meta(t::Type{ConditionalWriterOptions}) = meta(t, Symbol[:maxMemory,:timeoutMs,:threads,:authorizations,:durability], Int[], Dict{Symbol,Any}())
 
 type ActiveScan
-  client::UTF8String
-  user::UTF8String
-  table::UTF8String
+  client::String
+  user::String
+  table::String
   age::Int64
   idleTime::Int64
   _type::Int32
@@ -243,11 +243,11 @@ end # type ActiveScan
 type ActiveCompaction
   extent::KeyExtent
   age::Int64
-  inputFiles::Vector{UTF8String}
-  outputFile::UTF8String
+  inputFiles::Vector{String}
+  outputFile::String
   _type::Int32
   reason::Int32
-  localityGroup::UTF8String
+  localityGroup::String
   entriesRead::Int64
   entriesWritten::Int64
   iterators::Vector{IteratorSetting}
@@ -265,49 +265,49 @@ end # type WriterOptions
 meta(t::Type{WriterOptions}) = meta(t, Symbol[:durability], Int[], Dict{Symbol,Any}())
 
 type CompactionStrategyConfig
-  className::UTF8String
-  options::Dict{UTF8String,UTF8String}
+  className::String
+  options::Dict{String,String}
   CompactionStrategyConfig() = (o=new(); fillunset(o); o)
 end # type CompactionStrategyConfig
 
 type UnknownScanner <: Exception
-  msg::UTF8String
+  msg::String
   UnknownScanner() = (o=new(); fillunset(o); o)
 end # type UnknownScanner
 
 type UnknownWriter <: Exception
-  msg::UTF8String
+  msg::String
   UnknownWriter() = (o=new(); fillunset(o); o)
 end # type UnknownWriter
 
 type NoMoreEntriesException <: Exception
-  msg::UTF8String
+  msg::String
   NoMoreEntriesException() = (o=new(); fillunset(o); o)
 end # type NoMoreEntriesException
 
 type AccumuloException <: Exception
-  msg::UTF8String
+  msg::String
   AccumuloException() = (o=new(); fillunset(o); o)
 end # type AccumuloException
 
 type AccumuloSecurityException <: Exception
-  msg::UTF8String
+  msg::String
   AccumuloSecurityException() = (o=new(); fillunset(o); o)
 end # type AccumuloSecurityException
 
 type TableNotFoundException <: Exception
-  msg::UTF8String
+  msg::String
   TableNotFoundException() = (o=new(); fillunset(o); o)
 end # type TableNotFoundException
 
 type TableExistsException <: Exception
-  msg::UTF8String
+  msg::String
   TableExistsException() = (o=new(); fillunset(o); o)
 end # type TableExistsException
 
 type MutationsRejectedException <: Exception
-  msg::UTF8String
+  msg::String
   MutationsRejectedException() = (o=new(); fillunset(o); o)
 end # type MutationsRejectedException
 
-abstract AccumuloProxyClientBase
+@compat abstract type AccumuloProxyClientBase end

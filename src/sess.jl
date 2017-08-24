@@ -2,13 +2,13 @@
 # Authentication mechanisms
 # Only SASL-Plain supported for now
 type AccumuloAuth
-    mechanism::AbstractString
+    mechanism::String
     callback::Function
 
-    AccumuloAuth(mechanism::AbstractString=SASL_MECH_PLAIN, callback::Function=Thrift.sasl_callback_default) = new(mechanism, callback)
+    AccumuloAuth(mechanism::String=SASL_MECH_PLAIN, callback::Function=Thrift.sasl_callback_default) = new(mechanism, callback)
 end
 
-function AccumuloAuthSASLPlain(uid::AbstractString, passwd::AbstractString; zid::AbstractString="")
+function AccumuloAuthSASLPlain(uid::String, passwd::String; zid::String="")
     function callback(part::Symbol)
         (part == :authcid) && (return uid)
         (part == :passwd) && (return passwd)
@@ -34,9 +34,9 @@ type AccumuloConn
     protocol::TProtocol
     client::AccumuloProxyClient
     handle::Vector{UInt8}
-    connstr::AbstractString
+    connstr::String
 
-    function AccumuloConn(host::AbstractString, port::Integer, auth::AccumuloAuth; tprotocol::Symbol=:compact)
+    function AccumuloConn(host::String, port::Integer, auth::AccumuloAuth; tprotocol::Symbol=:compact)
         transport = TFramedTransport(TSocket(host, port))
         if tprotocol === :binary
             protocol = TBinaryProtocol(transport, true)
@@ -54,8 +54,8 @@ type AccumuloConn
     function connect(transport::TTransport, client::AccumuloProxyClient, auth::AccumuloAuth)
         open(transport)
         uid = auth.callback(:authcid)
-        creds = Dict{UTF8String,UTF8String}("password" => auth.callback(:passwd))
-        login(client, utf8(uid), creds)
+        creds = Dict{String,String}("password" => auth.callback(:passwd))
+        login(client, uid, creds)
     end
 end
 
@@ -74,7 +74,7 @@ end
 type AccumuloSession
     conn::AccumuloConn
 
-    function AccumuloSession(host::AbstractString="localhost", port::Integer=42424, auth::AccumuloAuth=AccumuloAuth(); tprotocol::Symbol=:compact)
+    function AccumuloSession(host::String="localhost", port::Integer=42424, auth::AccumuloAuth=AccumuloAuth(); tprotocol::Symbol=:compact)
         new(AccumuloConn(host, port, auth; tprotocol=tprotocol))
     end
 end
